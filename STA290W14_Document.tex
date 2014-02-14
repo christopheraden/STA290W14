@@ -1,0 +1,145 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage{
+	amssymb, 
+	amsmath
+}
+
+\usepackage[paperwidth=8.5in,paperheight=11.0in,
+  left=.5in,right=.5in,top=.5in,bottom=.5in,
+  includefoot,heightrounded]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\newchapter}[2]{
+	\chapter{#1}
+	\addtocontents{toc}{\vspace{.1in} \hspace{.25in} $\cdot$ #2 \par}
+}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
+	\center
+	\vspace*{\baselineskip} % Whitespace at the top of the page
+	\vspace{2.5in}
+	{\Huge\bfseries STA290}\\[\baselineskip] % First part of the title, if it is unimportant consider making the font size smaller to accentuate the main title
+	{\Huge\texttt{Winter 2014}}\\[\baselineskip] % Main title which draws the focus of the reader
+	{\Large \textit{Selected presentation materials}}\par % Tagline or further description
+	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
+\endgroup}
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleTH %Title page command
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ %BEGIN CONSTRUCTION OF CHAPTERS
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newchapter{Orthogonal Projections for Fixed Vectors}{2/13/14}
+
+
+For any two fixed vectors $z_1,z_2$ that are of equal dimension,
+\begin{align*}
+	<z_1,z_2> = z_1\cdot z_2 = z_1^{T}z_2
+\end{align*}
+
+Suppose $M$ is an $m$-dimensional linear space that is a subset of $\R^d$ for $d > 0$. Consequently, define $M^{\perp}$ as the orthogonal compliment of $M$ that has dimension $d-m$ which can be defined with $\phi_k$ as mutually orthogonal vectors for $k = 1,...,d$ such that
+\begin{align*}
+	M &= span\{\phi_1,...,\phi_m\} \label{span} \\
+	M^{\perp} & = span\{\phi_{m+1},...,\phi_d\} 
+\end{align*}
+
+Any vector $z \in \R^d$ can be uniquely represented as $x_1 + x_2 = z $ where $x_1 \in M$ and $x_2 \in M^{\perp}$, which is to say
+
+
+\begin{align*}
+	M \oplus M^{\perp} = \R^d
+\end{align*}
+
+\vspace{.1in}
+
+
+For any $y \in \R^d$,
+\begin{align*}
+	\begin{split}
+		y = \sum\limits_{k=1}^d <y, \phi_k>\phi_k
+	\end{split}
+	\begin{split}
+		||y||^2 = <y,y> = \sum\limits_{k=1}^d <y, \phi_k>^2 
+	\end{split}
+\end{align*}
+
+\vspace{.1in}
+
+and the projection of $y$ onto $M$ is defined as 
+$P_My = \argmin_{w \in M} ||w-y||^2 $, which can be expressed as
+
+\begin{align}
+\boxed{P_My = \sum\limits_{k=1}^m <y, \phi_k>\phi_k }
+\end{align}
+
+The following relation holds for the space $M$ and its orthogonal compliment $M^{\perp}$ \vspace{.1in}
+\begin{align*}
+\boxed{P_My \perp P_{M^{\perp}}y \qquad i.e. \qquad P_My \perp (y - P_My) \bigg.}
+\end{align*}
+
+%%%%%%%%%%%%%
+%END CHAPTER%
+%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newchapter{Projections for Gaussian Random Vectors}{2/13/14}
+
+Assume a Gaussian setting where we consider $Y$ a dimension $d \times 1$ vector of values and $U$ as an orthogonal "rotation" matrix of dimension $d\times d$, where $I = U^{T}U$. 
+\begin{align*}
+	Y \sim N\left(0, \sigma^2 I_d\right)\quad \Rightarrow \quad UY \sim N\left(0, \sigma^2I_d\right)
+\end{align*}
+
+
+Several consequential results are expressed from the properties of fixed vectors with the orthogonal $\; \phi_1,...,\phi_d \;$ representation where  $\; M = span\{\phi_1,...,\phi_m\} \;$.
+
+\begin{align}
+	\boxed{\left(\begin{array}{c} <Y,\phi_1> \\ \vdots \\ <Y,\phi_d> \end{array}\right) \sim N(0,\sigma^2 I_d)}
+\end{align}
+
+
+\vspace{.1in}
+
+\begin{align}
+	\boxed{||P_MY||^2 = \sum\limits_{k=1}^m <Y,\phi_k>^2 \quad \sim \quad \sigma^2 \chi^2_m}
+\end{align}
+
+
+\vspace{.1in}
+
+\begin{align}
+	\boxed{P_MY \text{ is independent of } (Y-P_MY) \bigg.} 
+\end{align}
+
+%%%%%%%%%%%%%
+%END CHAPTER%
+%%%%%%%%%%%%%
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
