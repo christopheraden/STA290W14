@@ -3,7 +3,11 @@ STA290W14
 
 Stat 290 Winter 2014 repository for presented materials
 
------
+____
+
+[Information](http://www.pontikis.net/blog/how-to-collaborate-on-github-open-source-projects) on collaborative projects within GitHub. Email  jwerner@ucdavis.edu  your GitHub user name to be added as a collaborator and given push access.
+
+____
 
 To add a new chapter, use the command
 
