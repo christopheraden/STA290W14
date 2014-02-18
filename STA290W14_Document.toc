@@ -1,4 +1,4 @@
 \contentsline {chapter}{\numberline {1}Orthogonal Projections for Fixed Vectors}{3}
 \vspace {.1in} \hspace {.25in} $\cdot $ 2/13/14 \par 
-\contentsline {chapter}{\numberline {2}Projections for Gaussian Random Vectors}{4}
+\contentsline {chapter}{\numberline {2}Projections for Gaussian Random Vectors}{5}
 \vspace {.1in} \hspace {.25in} $\cdot $ 2/13/14 \par 

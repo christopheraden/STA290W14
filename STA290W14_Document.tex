@@ -6,7 +6,7 @@
 }
 
 \usepackage[paperwidth=8.5in,paperheight=11.0in,
-  left=.5in,right=.5in,top=.5in,bottom=.5in,
+  left=1.0in,right=1.0in,top=1.0in,bottom=1.0in,
   includefoot,heightrounded]{geometry}
 
 \newcommand{\R}{\mathbb{R}}
@@ -49,10 +49,10 @@
 
 For any two fixed vectors $z_1,z_2$ that are of equal dimension,
 \begin{align*}
-	<z_1,z_2> = z_1\cdot z_2 = z_1^{T}z_2
+	\langle z_1,z_2\rangle = z_1\cdot z_2 = z_1^{T}z_2
 \end{align*}
 
-Suppose $M$ is an $m$-dimensional linear space that is a subset of $\R^d$ for $d > 0$. Consequently, define $M^{\perp}$ as the orthogonal compliment of $M$ that has dimension $d-m$ which can be defined with $\phi_k$ as mutually orthogonal vectors for $k = 1,...,d$ such that
+Suppose $M$ is an $m$-dimensional linear space that is a subset of $\R^d$. Consequently, define $M^{\perp}$ as the orthogonal compliment of $M$ that has dimension $d-m$ which can be defined with $\phi_k$ as mutually orthogonal vectors for $k = 1,...,d$ such that
 \begin{align*}
 	M &= span\{\phi_1,...,\phi_m\} \label{span} \\
 	M^{\perp} & = span\{\phi_{m+1},...,\phi_d\} 
@@ -68,14 +68,10 @@ Any vector $z \in \R^d$ can be uniquely represented as $x_1 + x_2 = z $ where $x
 \vspace{.1in}
 
 
-For any $y \in \R^d$,
+For any $y \in \R^d$ notice that 
 \begin{align*}
-	\begin{split}
-		y = \sum\limits_{k=1}^d <y, \phi_k>\phi_k
-	\end{split}
-	\begin{split}
-		||y||^2 = <y,y> = \sum\limits_{k=1}^d <y, \phi_k>^2 
-	\end{split}
+	y &= \sum\limits_{k=1}^d \langle y, \phi_k\rangle\phi_k \\
+	||y||^2 &= \langle y,y\rangle = \sum\limits_{k=1}^d \langle y, \phi_k\rangle^2 
 \end{align*}
 
 \vspace{.1in}
@@ -84,7 +80,7 @@ and the projection of $y$ onto $M$ is defined as
 $P_My = \argmin_{w \in M} ||w-y||^2 $, which can be expressed as
 
 \begin{align}
-\boxed{P_My = \sum\limits_{k=1}^m <y, \phi_k>\phi_k }
+\boxed{P_My = \sum\limits_{k=1}^m \langle y, \phi_k\rangle\phi_k }
 \end{align}
 
 The following relation holds for the space $M$ and its orthogonal compliment $M^{\perp}$ \vspace{.1in}
@@ -112,14 +108,14 @@ Assume a Gaussian setting where we consider $Y$ a dimension $d \times 1$ vector 
 Several consequential results are expressed from the properties of fixed vectors with the orthogonal $\; \phi_1,...,\phi_d \;$ representation where  $\; M = span\{\phi_1,...,\phi_m\} \;$.
 
 \begin{align}
-	\boxed{\left(\begin{array}{c} <Y,\phi_1> \\ \vdots \\ <Y,\phi_d> \end{array}\right) \sim N(0,\sigma^2 I_d)}
+	\boxed{\left(\begin{array}{c} \langle Y,\phi_1\rangle \\ \vdots \\ \langle Y,\phi_d\rangle \end{array}\right) \sim N(0,\sigma^2 I_d)}
 \end{align}
 
 
 \vspace{.1in}
 
 \begin{align}
-	\boxed{||P_MY||^2 = \sum\limits_{k=1}^m <Y,\phi_k>^2 \quad \sim \quad \sigma^2 \chi^2_m}
+	\boxed{||P_MY||^2 = \sum\limits_{k=1}^m \langle Y,\phi_k\rangle^2 \quad \sim \quad \sigma^2 \chi^2_m}
 \end{align}
 
 
