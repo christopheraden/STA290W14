@@ -72,7 +72,7 @@
 \section{Coordinate free projections}
 
 
-In this chapter we consider some abstract vector space, call it $V$, which has a norm $\|\cdot \|$ induced by an inner product $\langle \cdot, \cdot \rangle$ (i.e. $\|v\|^2 := \langle v, v\rangle\rangle$). The elements of $V$ are called vectors but since we are considering abstract spaces we do not necessarily have access to the ``coordinates'' of each vector. What we do have is the ability to construct an orthonormal basis of $V$, usually denoted something like $\phi_1,\phi_2, \ldots, \phi_d$, where $d$ is the dimension of $V$. Then each vector in $v$ has a decomposition in terms of these basis vectors. This note explores to computing things like norms and inner products and take projections with these basis vectors. 
+In this chapter we consider some abstract vector space, call it $V$, which has a norm $\|\cdot \|$ induced by an inner product $\langle \cdot, \cdot \rangle$ (i.e. $\|v\|^2 := \langle v, v\rangle\rangle$). The elements of $V$ are called vectors but since we are considering abstract spaces we do not necessarily have access to the ``coordinates'' of each vector. What we do have is the ability to construct an orthonormal basis of $V$, usually denoted something like $\phi_1,\phi_2, \ldots, \phi_d$, where $d$ is the dimension of $V$. Then each vector in $v$ has a decomposition in terms of these basis vectors. This note explores to computing things like norms and inner products and taking projections with these basis vectors. 
 
 
 
@@ -81,7 +81,7 @@ The idea is that $V$ will denote something like points in space. In physics, poi
 
 \begin{claim}[{\bf Coefficients are coordinates}] Let $\phi_1,\ldots, \phi_d$ be an orthonormal basis for $V$. Then any $v\in V$ has a unique representation 
 \[\boxed{ v = \sum_{k=1}^d c_k \phi_k,\,\,\text{where $c_k = \langle v, \phi_k\rangle$}.} \]
- Moreover, these basis coeffients behave exactly like coordinates in regular Euclidian space so that if $v = \sum_{k=1}^n c_k \phi_k$ and $w = \sum_{k=1}^n d_k \phi_k$, then
+ Moreover, these basis coefficients behave exactly like coordinates in regular Euclidean space so that if $v = \sum_{k=1}^n c_k \phi_k$ and $w = \sum_{k=1}^n d_k \phi_k$, then
 \[
 \boxed{\langle v,w\rangle = \sum_{k=1}^d c_kd_k.}
 \]
@@ -90,24 +90,24 @@ In particular,  $\| v \|^2 = \sum_{k=1}^d c_k^2$.
 
 
 
-Now suppose  $M\subset V$ is an $m$-dimensional linear subspace (the zero vector should be in here). We can define $M^{\perp}$ to be the set of all vectors in $V$ which are orthogonal to  every vector in $M$. In this case we can write $M \oplus M^{\perp} = V$ to signify that every $v\in V$ has a unique decompotision $v_M + v_M^\perp$ where $v_M\in M$ and $v_M^\perp \in M^\perp$. Often, in statistics, one needs to project a vector $v\in V$ to a subspace $M$. This operation is denoted $P_M v$ and is technically defined as $P_Mv := \argmin_{w \in M} ||w-v||^2 $. The following theorem shows that with a judicious choice of your orthonormal basis this projection is easily calculated
+Now suppose  $M\subset V$ is an $m$-dimensional linear subspace (the zero vector should be in here). We can define $M^{\perp}$ to be the set of all vectors in $V$ which are orthogonal to  every vector in $M$. In this case we can write $M \oplus M^{\perp} = V$ to signify that every $v\in V$ has a unique decomposition $v_M + v_M^\perp$ where $v_M\in M$ and $v_M^\perp \in M^\perp$. Often, in statistics, one needs to project a vector $v\in V$ to a subspace $M$. This operation is denoted $P_M v$ and is technically defined as $P_Mv := \argmin_{w \in M} ||w-v||^2 $. The following theorem shows that with a judicious choice of your orthonormal basis this projection is easily calculated
 
-\begin{claim}[{\bf Projections are easy}] If one constructs the orthonomaal basis $\phi_1,\ldots, \phi_d$ of $V$ in such a way that
+\begin{claim}[{\bf Projections are easy}] If one constructs the orthonormal basis $\phi_1,\ldots, \phi_d$ of $V$ in such a way that
 \begin{align*}
 	M &= span\{\phi_1,...,\phi_m\} \label{span} 
 \end{align*}
-then for any vector $v=\sum_{k=1}^d c_k \phi_k$ the projection to $M$ is computed by trucating the decomposotion to m:
+then for any vector $v=\sum_{k=1}^d c_k \phi_k$ the projection to $M$ is computed by truncating the decomposition to m:
 \begin{align}
 \boxed{P_Mv = \sum\limits_{k=1}^m c_k\phi_k }.
 \end{align}
-Moreovier since $P_Mv$ must be orthogonal to  $P_{M^{\perp}}v$, and $P_{M^{\perp}}v = v - P_Mv$, we have that 
+Moreover, since $P_Mv$ must be orthogonal to  $P_{M^{\perp}}v$, and $P_{M^{\perp}}v = v - P_Mv$, we have that 
 \[\boxed{P_Mv \perp (v - P_Mv).}\]
 
 \end{claim}
 
 
 
-The following is a simple consequence of the above claim but it will be important later so we state it here
+The following is a simple consequence of the above claim, but it will be important later so we state it here
 \begin{corollary}
 If $M$ is a linear subspace of $V$ and $v,w \in V$ then
 \[\langle v, P_M w\rangle = \langle P_M v, P_M w\rangle = \langle P_M v,  w\rangle. \]  
@@ -169,7 +169,7 @@ If $M$ is a linear subspace of $V$ and $v,w \in V$ then
 \section{Projections for Gaussians}
 
 
-If we are working in an abstract vector space $V$, what do we even mean by a Gaussian vector in $V$? A random vector $Y$ is said to be Gaussin if $\langle v,Y\rangle$ is a Gaussian random variable for all $v\in V$. Now we want some notion of $Y\sim \mathcal N(0,\sigma^2 I_d)$. To be able to say $Y\sim \mathcal N(0,\sigma^2 I_d)$ we simply require that there exists a orthonormal basis representation $Y= \sum_{k=1}^d d_k \psi_k$ where $d_1,\ldots, d_d$ are iid $\mathcal N(0,\sigma^2)$. 
+If we are working in an abstract vector space $V$, what do we even mean by a Gaussian vector in $V$? A random vector $Y$ is said to be Gaussian if $\langle v,Y\rangle$ is a Gaussian random variable for all $v\in V$. Now we want some notion of $Y\sim \mathcal N(0,\sigma^2 I_d)$. To be able to say $Y\sim \mathcal N(0,\sigma^2 I_d)$ we simply require that there exists a orthonormal basis representation $Y= \sum_{k=1}^d d_k \psi_k$ where $d_1,\ldots, d_d$ are iid $\mathcal N(0,\sigma^2)$. 
 
 A fundamental fact about independent mean zero Gaussian random variables is that they are invariant under rotations. In particular if $W \sim \mathcal N\left(0, \sigma^2 I_d\right)$ where $W$ is a random vector in Euclidean space then $UW \sim \mathcal N\left(0, \sigma^2I_d\right)$ for any orthogonal rotation matrix ($U$ is a rotation if  $I = U^{t}U$). In fact, independent mean zero Gaussians make up the only multivariate distribution with independent coordinates that is rotationally invariant. 
 You can think of left multiplication by a rotation matrix as simply changing basis. Therefore if  $Y$ is an abstract random vector that satisfies $Y\sim \mathcal N(0,\sigma^2 I)$, then {\em any} basis decomposition of $Y$ should give iid $\mathcal N(0,\sigma^2)$ coefficients. 
@@ -185,7 +185,7 @@ Suppose $Y$ is an abstract Gaussian random vector in $V$ which satisfies $Y\sim 
 Once we have the above theorem the following corollary is easy to prove.
 
 \begin{corollary}
-Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathcal N(0,\sigma^2 I_d)$. Suppose $M$ is an $m$-dimensional linear subspace of $V$ which is spanned by $\phi_1,\ldots, \phi_m$. If $Y = \sum_{k=1}^d c_k \phi_k$ then the following three statement are true:
+Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathcal N(0,\sigma^2 I_d)$. Suppose $M$ is an $m$-dimensional linear subspace of $V$ which is spanned by $\phi_1,\ldots, \phi_m$. If $Y = \sum_{k=1}^d c_k \phi_k$ then the following three statements are true:
 \begin{enumerate}[(i)]
 \item $||P_MY||^2 = c_1^2+\cdots c_m^2 \sim \sigma^2 \chi^2_m$;
 \item $P_MY$ is independent of  $Y-P_MY$;

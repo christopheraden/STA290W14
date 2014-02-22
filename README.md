@@ -9,10 +9,13 @@ ____
 
 ____
 
-To add a new chapter, use the command
+To add a new chapters and sections, use the commands
 
-    \newchapter{<Name of Chapter>}{<Date>}
-With your appropriate content between the curly braces. Add your Tex code following that and your chapter will be automatically added to the table of contents. 
+    \chapter{}
+
+and
+
+    \section{}
 
 It is recommended that this TeX repository serves as a collection of completed presentation files, not an in-progress TeX file for a given week's talk (because of the multiple user setup)
 
