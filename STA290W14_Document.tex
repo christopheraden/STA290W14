@@ -1,16 +1,38 @@
-\documentclass[a4paper, 11pt]{report}
+\documentclass[11pt]{report}
 
-\usepackage{
-	amssymb, 
-	amsmath
-}
+\usepackage{amsmath,amsthm,amssymb,epsf,eucal}
+\usepackage{bm} %% Bold Math
+\usepackage{graphicx,psfrag}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{subfigure}
 
-\usepackage[paperwidth=8.5in,paperheight=11.0in,
-  left=1.0in,right=1.0in,top=1.0in,bottom=1.0in,
-  includefoot,heightrounded]{geometry}
+
+% \documentclass[a4paper, 11pt]{report}
+
+% \usepackage{
+% 	amssymb, 
+% 	amsmath
+% }
+
+% \usepackage[paperwidth=8.5in,paperheight=11.0in,
+%   left=1.0in,right=1.0in,top=1.0in,bottom=1.0in,
+%   includefoot,heightrounded]{geometry}
+
+
+
+\newtheorem{claim}{Claim}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 
 \newcommand{\R}{\mathbb{R}}
-
+\newcommand{\bs}{\boldsymbol}
 \newcommand{\newchapter}[2]{
 	\chapter{#1}
 	\addtocontents{toc}{\vspace{.1in} \hspace{.25in} $\cdot$ #2 \par}
@@ -28,7 +50,7 @@
 	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
 \endgroup}
 
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{20pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -44,49 +66,96 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newchapter{Orthogonal Projections for Fixed Vectors}{2/13/14}
+%\newchapter{Coordinate free orthogonal projections for fixed vectors}{2/13/14}
+\chapter{Abstract vector spaces}
+
+\section{Coordinate free projections}
 
 
-For any two fixed vectors $z_1,z_2$ that are of equal dimension,
+In this chapter we consider some abstract vector space, call it $V$, which has a norm $\|\cdot \|$ induced by an inner product $\langle \cdot, \cdot \rangle$ (i.e. $\|v\|^2 := \langle v, v\rangle\rangle$). The elements of $V$ are called vectors but since we are considering abstract spaces we do not necessarily have access to the ``coordinates'' of each vector. What we do have is the ability to construct an orthonormal basis of $V$, usually denoted something like $\phi_1,\phi_2, \ldots, \phi_d$, where $d$ is the dimension of $V$. Then each vector in $v$ has a decomposition in terms of these basis vectors. This note explores to computing things like norms and inner products and take projections with these basis vectors. 
+
+
+
+The idea is that $V$ will denote something like points in space. In physics, points in space should exist independently of what coordinate system one uses. In particular, the notion of distance and inner product exist {\em before} we attach a coordinate system to this space. The following chapter talks about how to work with such vectors. The main story is that one can choose a particular orthonormal basis and then the coefficients of the basis decomposition behave exactly as regular coordinates in $\Bbb R^d$. Moreover, if one wants to project a vector in $V$ to a linear subspace $M\subset V$ then by choosing the basis vectors appropriately one can easily perform the desired projection by simply truncating the basis representation.
+
+
+\begin{claim}[{\bf Coefficients are coordinates}] Let $\phi_1,\ldots, \phi_d$ be an orthonormal basis for $V$. Then any $v\in V$ has a unique representation 
+\[\boxed{ v = \sum_{k=1}^d c_k \phi_k,\,\,\text{where $c_k = \langle v, \phi_k\rangle$}.} \]
+ Moreover, these basis coeffients behave exactly like coordinates in regular Euclidian space so that if $v = \sum_{k=1}^n c_k \phi_k$ and $w = \sum_{k=1}^n d_k \phi_k$, then
+\[
+\boxed{\langle v,w\rangle = \sum_{k=1}^d c_kd_k.}
+\]
+In particular,  $\| v \|^2 = \sum_{k=1}^d c_k^2$.
+\end{claim}
+
+
+
+Now suppose  $M\subset V$ is an $m$-dimensional linear subspace (the zero vector should be in here). We can define $M^{\perp}$ to be the set of all vectors in $V$ which are orthogonal to  every vector in $M$. In this case we can write $M \oplus M^{\perp} = V$ to signify that every $v\in V$ has a unique decompotision $v_M + v_M^\perp$ where $v_M\in M$ and $v_M^\perp \in M^\perp$. Often, in statistics, one needs to project a vector $v\in V$ to a subspace $M$. This operation is denoted $P_M v$ and is technically defined as $P_Mv := \argmin_{w \in M} ||w-v||^2 $. The following theorem shows that with a judicious choice of your orthonormal basis this projection is easily calculated
+
+\begin{claim}[{\bf Projections are easy}] If one constructs the orthonomaal basis $\phi_1,\ldots, \phi_d$ of $V$ in such a way that
 \begin{align*}
-	\langle z_1,z_2\rangle = z_1\cdot z_2 = z_1^{T}z_2
+	M &= span\{\phi_1,...,\phi_m\} \label{span} 
 \end{align*}
-
-Suppose $M$ is an $m$-dimensional linear space that is a subset of $\R^d$. Consequently, define $M^{\perp}$ as the orthogonal compliment of $M$ that has dimension $d-m$ which can be defined with $\phi_k$ as mutually orthogonal vectors for $k = 1,...,d$ such that
-\begin{align*}
-	M &= span\{\phi_1,...,\phi_m\} \label{span} \\
-	M^{\perp} & = span\{\phi_{m+1},...,\phi_d\} 
-\end{align*}
-
-Any vector $z \in \R^d$ can be uniquely represented as $x_1 + x_2 = z $ where $x_1 \in M$ and $x_2 \in M^{\perp}$, which is to say
-
-
-\begin{align*}
-	M \oplus M^{\perp} = \R^d
-\end{align*}
-
-\vspace{.1in}
-
-
-For any $y \in \R^d$ notice that 
-\begin{align*}
-	y &= \sum\limits_{k=1}^d \langle y, \phi_k\rangle\phi_k \\
-	||y||^2 &= \langle y,y\rangle = \sum\limits_{k=1}^d \langle y, \phi_k\rangle^2 
-\end{align*}
-
-\vspace{.1in}
-
-and the projection of $y$ onto $M$ is defined as 
-$P_My = \argmin_{w \in M} ||w-y||^2 $, which can be expressed as
-
+then for any vector $v=\sum_{k=1}^d c_k \phi_k$ the projection to $M$ is computed by trucating the decomposotion to m:
 \begin{align}
-\boxed{P_My = \sum\limits_{k=1}^m \langle y, \phi_k\rangle\phi_k }
+\boxed{P_Mv = \sum\limits_{k=1}^m c_k\phi_k }.
 \end{align}
+Moreovier since $P_Mv$ must be orthogonal to  $P_{M^{\perp}}v$, and $P_{M^{\perp}}v = v - P_Mv$, we have that 
+\[\boxed{P_Mv \perp (v - P_Mv).}\]
 
-The following relation holds for the space $M$ and its orthogonal compliment $M^{\perp}$ \vspace{.1in}
-\begin{align*}
-\boxed{P_My \perp P_{M^{\perp}}y \qquad i.e. \qquad P_My \perp (y - P_My) \bigg.}
-\end{align*}
+\end{claim}
+
+
+
+The following is a simple consequence of the above claim but it will be important later so we state it here
+\begin{corollary}
+If $M$ is a linear subspace of $V$ and $v,w \in V$ then
+\[\langle v, P_M w\rangle = \langle P_M v, P_M w\rangle = \langle P_M v,  w\rangle. \]  
+\end{corollary}
+
+
+
+
+% For any two fixed vectors $z_1,z_2$ that are of equal dimension,
+% \begin{align*}
+% 	\langle z_1,z_2\rangle = z_1\cdot z_2 = z_1^{T}z_2
+% \end{align*}
+
+% Suppose $M$ is an $m$-dimensional linear space that is a subset of $\R^d$. Consequently, define $M^{\perp}$ as the orthogonal compliment of $M$ that has dimension $d-m$ which can be defined with $\phi_k$ as mutually orthogonal vectors for $k = 1,...,d$ such that
+% \begin{align*}
+% 	M &= span\{\phi_1,...,\phi_m\} \label{span} \\
+% 	M^{\perp} & = span\{\phi_{m+1},...,\phi_d\} 
+% \end{align*}
+
+% Any vector $z \in \R^d$ can be uniquely represented as $x_1 + x_2 = z $ where $x_1 \in M$ and $x_2 \in M^{\perp}$, which is to say
+
+
+% \begin{align*}
+% 	M \oplus M^{\perp} = \R^d
+% \end{align*}
+
+% \vspace{.1in}
+
+
+% For any $y \in \R^d$ notice that 
+% \begin{align*}
+% 	y &= \sum\limits_{k=1}^d \langle y, \phi_k\rangle\phi_k \\
+% 	||y||^2 &= \langle y,y\rangle = \sum\limits_{k=1}^d \langle y, \phi_k\rangle^2 
+% \end{align*}
+
+% \vspace{.1in}
+
+% and the projection of $y$ onto $M$ is defined as 
+% $P_My = \argmin_{w \in M} ||w-y||^2 $, which can be expressed as
+
+% \begin{align}
+% \boxed{P_My = \sum\limits_{k=1}^m \langle y, \phi_k\rangle\phi_k }
+% \end{align}
+
+% The following relation holds for the space $M$ and its orthogonal compliment $M^{\perp}$ \vspace{.1in}
+% \begin{align*}
+% \boxed{P_My \perp P_{M^{\perp}}y \qquad i.e. \qquad P_My \perp (y - P_My) \bigg.}
+% \end{align*}
 
 %%%%%%%%%%%%%
 %END CHAPTER%
@@ -97,42 +166,32 @@ The following relation holds for the space $M$ and its orthogonal compliment $M^
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newchapter{Projections for Gaussian Random Vectors}{2/13/14}
-
-Assume a Gaussian setting where we consider $Y$ a dimension $d \times 1$ vector of values and $U$ as an orthogonal "rotation" matrix of dimension $d\times d$, where $I = U^{T}U$. 
-\begin{align*}
-	Y \sim N\left(0, \sigma^2 I_d\right)\quad \Rightarrow \quad UY \sim N\left(0, \sigma^2I_d\right)
-\end{align*}
+\section{Projections for Gaussians}
 
 
-Several consequential results are expressed from the properties of fixed vectors with the orthogonal $\; \phi_1,...,\phi_d \;$ representation where  $\; M = span\{\phi_1,...,\phi_m\} \;$.
+If we are working in an abstract vector space $V$, what do we even mean by a Gaussian vector in $V$? A random vector $Y$ is said to be Gaussin if $\langle v,Y\rangle$ is a Gaussian random variable for all $v\in V$. Now we want some notion of $Y\sim \mathcal N(0,\sigma^2 I_d)$. To be able to say $Y\sim \mathcal N(0,\sigma^2 I_d)$ we simply require that there exists a orthonormal basis representation $Y= \sum_{k=1}^d d_k \psi_k$ where $d_1,\ldots, d_d$ are iid $\mathcal N(0,\sigma^2)$. 
 
-\begin{align}
-	\boxed{\left(\begin{array}{c} \langle Y,\phi_1\rangle \\ \vdots \\ \langle Y,\phi_d\rangle \end{array}\right) \sim N(0,\sigma^2 I_d)}
-\end{align}
+A fundamental fact about independent mean zero Gaussian random variables is that they are invariant under rotations. In particular if $W \sim \mathcal N\left(0, \sigma^2 I_d\right)$ where $W$ is a random vector in Euclidean space then $UW \sim \mathcal N\left(0, \sigma^2I_d\right)$ for any orthogonal rotation matrix ($U$ is a rotation if  $I = U^{t}U$). In fact, independent mean zero Gaussians make up the only multivariate distribution with independent coordinates that is rotationally invariant. 
+You can think of left multiplication by a rotation matrix as simply changing basis. Therefore if  $Y$ is an abstract random vector that satisfies $Y\sim \mathcal N(0,\sigma^2 I)$, then {\em any} basis decomposition of $Y$ should give iid $\mathcal N(0,\sigma^2)$ coefficients. 
 
+\begin{claim}
+Suppose $Y$ is an abstract Gaussian random vector in $V$ which satisfies $Y\sim \mathcal N(0,\sigma^2 I)$. If $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ then 
+ 
+ \[ 
+ \boxed{Y = \sum_{k=1}^d c_k \phi_k \text{ implies } c_1,\ldots, c_d \text{ are iid $\mathcal N(0,\sigma^2)$.}}
+ \]
+\end{claim}
 
-\vspace{.1in}
+Once we have the above theorem the following corollary is easy to prove.
 
-\begin{align}
-	\boxed{||P_MY||^2 = \sum\limits_{k=1}^m \langle Y,\phi_k\rangle^2 \quad \sim \quad \sigma^2 \chi^2_m}
-\end{align}
-
-
-\vspace{.1in}
-
-\begin{align}
-	\boxed{P_MY \text{ is independent of } (Y-P_MY) \bigg.} 
-\end{align}
-
-%%%%%%%%%%%%%
-%END CHAPTER%
-%%%%%%%%%%%%%
-
-
-
-
-
+\begin{corollary}
+Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathcal N(0,\sigma^2 I_d)$. Suppose $M$ is an $m$-dimensional linear subspace of $V$ which is spanned by $\phi_1,\ldots, \phi_m$. If $Y = \sum_{k=1}^d c_k \phi_k$ then the following three statement are true:
+\begin{enumerate}[(i)]
+\item $||P_MY||^2 = c_1^2+\cdots c_m^2 \sim \sigma^2 \chi^2_m$;
+\item $P_MY$ is independent of  $Y-P_MY$;
+\item $var(\langle v,Y\rangle) = var( v_1 c_1+\cdots v_dc_d) =  \sigma^2 \| v \|^2$.
+\end{enumerate}
+\end{corollary}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
