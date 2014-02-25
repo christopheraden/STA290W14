@@ -292,32 +292,32 @@ This method quickly becomes a computational nightmare. \newline
 
 \underline{\textbf{Method II:}} Compute using the MSE: $\mathbb{E}(\lambda-\widehat{\lambda})^2 = Var(\widehat{\lambda}) + [E(\widehat{\lambda}) -\lambda]^2$ 
 
-		\begin{align*}
-		r\left(\pi, \widehat{\lambda}\right)
-		& = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(l(\lambda, \widehat{\lambda})\right) \right] 
-     = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(Var_{x|\lambda}(\widehat{\lambda}) + [\mathbb{E}_{x|\lambda}(\widehat{\lambda}) -\lambda]^2 \right) \right] \\
-    & = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + [\gamma\lambda + (\alpha-1)\gamma-\lambda]^2 \right) \right] \\
-    & = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + \lambda^2(\gamma-1)^2 + 2\lambda\gamma(\gamma-1)(\alpha-1) + \gamma^2(\alpha-1)^2 \right) \right] \\
-		& = \mathbb{E}_\lambda\left[\gamma^2 + \lambda\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{\lambda}\gamma^2(\alpha-1)^2  \right] \\ 		
-		& = \gamma^2 + \alpha\beta\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{(\alpha-1)\beta}\gamma^2(\alpha-1)^2 \\   
-	  & = \gamma^2 + \alpha\frac{\gamma^2}{\beta} - \frac{\gamma^2}{\beta}(\alpha-1)   		
-		  = \gamma^2  + \frac{\gamma^2}{\beta}   		
-		  = \gamma^2\left(1  + \frac{1}{\beta}\right)   	
-		  = \frac{\beta}{\beta+1} \quad \qed 
-		\end{align*}
-		where we used the following:
-		$$Var_{x|\lambda}(\widehat{\lambda}) = \gamma^2\lambda, \quad  \mathbb{E}_{x|\lambda}(\widehat{\lambda}) = \gamma\lambda +(\alpha-1)\gamma, \quad \gamma-1 = \frac{-\gamma}{\beta} $$
+\begin{align*}
+r\left(\pi, \widehat{\lambda}\right)
+& = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(l(\lambda, \widehat{\lambda})\right) \right] 
+= \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(Var_{x|\lambda}(\widehat{\lambda}) + [\mathbb{E}_{x|\lambda}(\widehat{\lambda}) -\lambda]^2 \right) \right] \\
+& = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + [\gamma\lambda + (\alpha-1)\gamma-\lambda]^2 \right) \right] \\
+& = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + \lambda^2(\gamma-1)^2 + 2\lambda\gamma(\gamma-1)(\alpha-1) + \gamma^2(\alpha-1)^2 \right) \right] \\
+& = \mathbb{E}_\lambda\left[\gamma^2 + \lambda\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{\lambda}\gamma^2(\alpha-1)^2  \right] \\ 		
+& = \gamma^2 + \alpha\beta\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{(\alpha-1)\beta}\gamma^2(\alpha-1)^2 \\   
+& = \gamma^2 + \alpha\frac{\gamma^2}{\beta} - \frac{\gamma^2}{\beta}(\alpha-1)   		
+= \gamma^2  + \frac{\gamma^2}{\beta}   		
+= \gamma^2\left(1  + \frac{1}{\beta}\right)   	
+= \frac{\beta}{\beta+1} \quad \qed 
+\end{align*}
+where we used the following:
+$$Var_{x|\lambda}(\widehat{\lambda}) = \gamma^2\lambda, \quad  \mathbb{E}_{x|\lambda}(\widehat{\lambda}) = \gamma\lambda +(\alpha-1)\gamma, \quad \gamma-1 = \frac{-\gamma}{\beta} $$
 \underline{\textbf{Method III:}} Compute by swapping expectations. \newline
 Switch the order of expectations, which is allowed by applying Bayes Theorem to change from the prior to the posterior, and Fubini's Theorem which allows us to swap the order of integration.   
-		$$r(\pi, \delta) =  \int\left[ \int l(\lambda,\delta)p(x|\lambda) \;dx\right] \pi(\lambda)\; d\lambda = \int\left[ \int l(\lambda,\delta)\pi(\lambda|x) \;d\lambda\right] p(x)\; dx =  \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right]$$
+$$r(\pi, \delta) =  \int\left[ \int l(\lambda,\delta)p(x|\lambda) \;dx\right] \pi(\lambda)\; d\lambda = \int\left[ \int l(\lambda,\delta)\pi(\lambda|x) \;d\lambda\right] p(x)\; dx =  \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right]$$
 Then, 
 \begin{align*}
-		r\left(\pi, \widehat{\lambda}\right)
-		& = \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right] 
-		  = \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(\lambda - 2\widehat{\lambda} + \frac{1}{\lambda}\widehat{\lambda}^2 \right) \right] \\
-		& = \mathbb{E}_x\left[\widehat{\lambda} + \frac{\beta}{\beta+1} - 2\widehat{\lambda} + \frac{1}{\widehat{\lambda}}\widehat{\lambda}^2  \right] 
-		  = \mathbb{E}_x\left[\frac{\beta}{\beta+1}  \right] \\
-		& = \frac{\beta}{\beta+1}  \qed
+r\left(\pi, \widehat{\lambda}\right)
+& = \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right] 
+= \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(\lambda - 2\widehat{\lambda} + \frac{1}{\lambda}\widehat{\lambda}^2 \right) \right] \\
+& = \mathbb{E}_x\left[\widehat{\lambda} + \frac{\beta}{\beta+1} - 2\widehat{\lambda} + \frac{1}{\widehat{\lambda}}\widehat{\lambda}^2  \right] 
+= \mathbb{E}_x\left[\frac{\beta}{\beta+1}  \right] \\
+& = \frac{\beta}{\beta+1}  \qed
 \end{align*}
 where we used 
 $$\mathbb{E}_{\lambda|x}\left(\lambda\right) = \frac{(\alpha +x)\beta}{\beta+1} = \frac{(\alpha +x - 1)\beta}{\beta+1} + \frac{\beta}{\beta+1} = \widehat{\lambda} + \frac{\beta}{\beta+1},\text{ and } \mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda}\right) = \frac{1}{\widehat{\lambda}}. $$
