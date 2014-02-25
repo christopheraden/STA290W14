@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.9.30)  25 FEB 2014 09:47
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.9.30)  25 FEB 2014 12:23
 entering extended mode
 **STA290W14_Document.tex
 (C:\Users\EliotP\Documents\GitHub\STA290W14\STA290W14_Document.tex
@@ -323,29 +323,72 @@ LaTeX Font Info:    Try loading font information for U+eus on input line 172.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) [4] [5]
-(C:\Users\EliotP\Documents\GitHub\STA290W14\STA290W14_Document.aux) ) 
+Chapter 2.
+[6
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+
+ []
+
+[7]
+Overfull \hbox (2.29033pt too wide) in paragraph at lines 264--265
+[]\OT1/cmr/m/n/10.95 For our loss func-tion given in (2.1[]) we rec-og-nize that we have a ``weighted''
+ []
+
+
+Overfull \hbox (14.35901pt too wide) in paragraph at lines 265--267
+\OT1/cmr/m/n/10.95 Now, since our pos-te-rior dis-tri-bu-tion is a gamma with pa-ram-e-ters $[]$,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 289--291
+
+ []
+
+
+Overfull \hbox (101.11038pt too wide) detected at line 312
+\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 ) = [] [] \OML/cmm/m/it/10.95 \OT1/
+cmr/m/n/10.95 (\OML/cmm/m/it/10.95 \OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 d \OT1/cmr/m/n/10.95 = [] [] \OML/cmm/m/it
+/10.95 p\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 dx \OT1/cmr/m/n/10.95 = \U/msb
+/m/n/10.95 E[] []
+ []
+
+[9]
+Overfull \hbox (10.39702pt too wide) detected at line 323
+\U/msb/m/n/10.95 E[] [] \OT1/cmr/m/n/10.95 = [] = [] + [] = [] + []\OML/cmm/m/it/10.95 ; []\U/msb/m/n/10.95 E[] [] \OT1/
+cmr/m/n/10.95 = []\OML/cmm/m/it/10.95 :
+ []
+
+[10] (C:\Users\EliotP\Documents\GitHub\STA290W14\STA290W14_Document.aux) ) 
 Here is how much of TeX's memory you used:
- 3058 strings out of 493921
- 41152 string characters out of 3144873
- 98366 words of memory out of 3000000
- 6259 multiletter control sequences out of 15000+200000
+ 3060 strings out of 493921
+ 41174 string characters out of 3144873
+ 102386 words of memory out of 3000000
+ 6261 multiletter control sequences out of 15000+200000
  16799 words of font info for 62 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,12n,26p,785b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.
-pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
-gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eusm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on STA290W14_Document.pdf (5 pages, 162213 bytes).
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eusm10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on STA290W14_Document.pdf (10 pages, 209295 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
