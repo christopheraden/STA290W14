@@ -1,3 +1,4 @@
 \contentsline {chapter}{\numberline {1}Abstract vector spaces}{3}
 \contentsline {section}{\numberline {1.1}Coordinate free projections}{3}
 \contentsline {section}{\numberline {1.2}Projections for Gaussians}{5}
+\contentsline {chapter}{\numberline {2}Ideas Involving Bayesian Risk}{6}

@@ -195,6 +195,135 @@ Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathca
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Ideas Involving Bayesian Risk}
+
+In this chapter we will explore some ideas involved in finding a Bayes rule (or Bayes estimator), and its associated Bayes risk under a specific loss function. 
+
+
+Consider the family of Poisson distributions $\mathcal{P}(\lambda)$, $\lambda>0$, with p.m.f. given by 
+$$p(x|\lambda) = e^{-\lambda}\frac{\lambda^x}{x!}, \quad x=0,1,2, \dots, $$
+where we are interested in estimating $\lambda$ under the loss function
+\begin{equation} \label{eq:loss}
+l(\lambda,\delta(X)) = \frac{(\lambda-\delta(X))^2}{\lambda}.
+\end{equation}
+	
+\begin{claim}
+The Gamma family of distributions forms a conjugate family of priors for $\lambda$.
+		
+Specifically, let $\lambda \sim Gamma(\alpha,\beta)$ be a prior on $\lambda$ with prior hyper parameters $\theta_0 = (\alpha,\beta)$. Then the posterior is $\lambda|x \sim Gamma\left(\alpha+x, \frac{\beta}{\beta+1}\right)$, with posterior hyper parameters $\theta_1 = \left(\alpha+x, \frac{\beta}{\beta+1}\right)$. 
+\end{claim}
+		
+Under this Gamma prior, a natural question is to find the associated Bayes estimator, or Bayes rule, $\widehat{\lambda}_\pi$.
+
+By definition, a Bayes estimator $\delta^*(X)$ is a decision rule such that it minimizes the posterior risk; i.e.  
+$$r(\delta^*(x)|x) = \inf_{\delta}\; r_\pi(\delta|x) $$
+where $r_\pi(\delta|x)$ is defined as 
+\begin{equation}\label{eq:postrisk}
+r_\pi(\delta|x) = \mathbb{E}_{\lambda|x}(l(\lambda,\delta(X))|X=x) = \int_\Lambda l(\lambda,\delta(X)) \pi(\lambda|x) \; d\lambda,
+\end{equation}
+and the expectation is taken with respect to the posterior distribution of $\lambda$ given $X=x$, and $\lambda$ is distributed as $\pi$. 
+
+In order to find this desired rule, $\widehat{\lambda}_\pi = \delta^*(X)$, and subsequently its associated Bayes risk, there are a number of ways to go about performing the actual computations. Our goal in this note is to show that not all of these methods are ``created equal'' in terms of computational time, which is especially relevant when taking an in-class exam. \newline
+
+ 
+\underline{\textbf{Method I:}} Finding $\widehat{\lambda}_\pi$ directly. \newline
+Using equation (\ref{eq:postrisk}), we can substitute in our loss function (\ref{eq:loss}), and arrive at  
+\begin{align*}
+r_\pi(\delta|x) 
+& = \mathbb{E}_{\lambda|x}\left(\frac{(\lambda-\delta)^2}{\lambda}\right )  = \mathbb{E}_{\lambda|x}\left(\lambda\right) - 2\delta + \delta^2\mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda}\right ) 
+\end{align*}
+We can find the infimum of this Bayes risk over all decision rules $\delta$ by taking the derivative with respect to $\delta$, and setting equal to 0.
+		
+$$\frac{\partial r_\pi(\delta|x)}{\partial \delta} =  - 2\delta + \delta^2\mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda} \right )$$
+$$\implies \quad \delta^*(X) = \frac{1}{\mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda} \right )}$$
+This expected value, taken under the posterior distribution, is equal to $\frac{\beta+1}{(\alpha +x-1)\beta}$
+\begin{align*}
+\mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda} \right) 
+& = \int \frac{1}{\lambda} \pi(\lambda|x) \; d\lambda 
+= \int \frac{1}{\lambda} \frac{1}{\Gamma(\alpha+x)\left(\frac{\beta}{\beta+1}\right)^{\alpha+x}}\lambda^{\alpha+x-1}e^{-(\frac{\beta+1}{\beta})\lambda} \; d\lambda \\
+& = \frac{\Gamma(\alpha+x-1)\left(\frac{\beta}{\beta+1}\right)^{\alpha+x-1}}{\Gamma(\alpha+x)\left(\frac{\beta}{\beta+1}\right)^{\alpha+x}}\int\frac{\lambda^{(\alpha+x-1)-1}e^{-(\frac{\beta+1}{\beta})\lambda}}{\Gamma(\alpha+x-1)\left(\frac{\beta}{\beta+1}\right)^{\alpha+x-1}} \; d\lambda \\
+& = \frac{1}{(\alpha+x-1)\left(\frac{\beta}{\beta+1}\right)}
+\end{align*}		
+Thus, 
+$$\delta^*(X) = \widehat{\lambda}_\pi =\frac{(\alpha +x-1)\beta}{\beta+1} $$
+
+\underline{\textbf{Method II:}} A second method for finding this Bayes rule utilizes the following well-known theorem, and a subsequent corollary. 
+
+\begin{theorem}
+Given a squared-error loss function $l(\lambda, \delta(X)) = (\lambda - \delta(X))^2$, and a prior $\pi$ on $\lambda$, the Bayes rule is found by taking the expected value of the associated posterior distribution. i.e. $\widehat{\lambda}_\pi = E_{\lambda|x}(\lambda)$. 
+\end{theorem}
+
+\begin{corollary}
+Let $\omega >0$ be a positive `weight'. Then, for the so-called `weighted squared-error` loss function $l(\lambda, \delta(X)) = \frac{(\lambda - \delta(X))^2}{\omega}$. The Bayes rule is found by solving the following integral:
+$$\widehat{\lambda}_\pi = \int_\Lambda\frac{(\lambda - \delta(X))^2}{\omega} \pi(\lambda|x) d\lambda$$
+where $\pi$ is a prior on $\lambda$, and $\pi(\lambda|X)$ is the density of the associated posterior distribution. 
+\end{corollary}			
+
+For our loss function given in (\ref{eq:loss}) we recognize that we have a ``weighted'' square-error loss. Thus, we identify $\omega = \lambda$, and write  
+$$\widehat{\lambda}_\pi = \int_\Lambda\frac{(\lambda - \delta(X))^2}{\lambda} \pi(\lambda|x) d\lambda$$
+Now, since our posterior distribution is a gamma with parameters $\left(\alpha+x, \frac{\beta}{\beta+1}\right)$, then taking this posterior density and dividing by $\lambda$ gives a density of a gamma distribution with parameters $\left(\alpha+x-1, \frac{\beta}{\beta+1}\right)$. It follows that the Bayes rule is simply the expected value of this newly-formed gamma distribution. i.e.
+$$\widehat{\lambda}_\pi = \frac{(\alpha +x-1)\beta}{\beta+1}.$$
+		
+Next, we are interested in finding the Bayes risk of this Bayes rule. i.e. $r(\pi, \widehat{\lambda}_\pi)$. 
+		
+The Bayes risk for any decision rule $\delta$ is defined as 
+		$$r(\pi, \delta) = \mathbb{E}_\lambda(R(\lambda,\delta)) = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\theta\left(l(\lambda, \delta)\right) \right]$$
+		or, by explicitly writing out the expectations,
+		$$r(\pi, \delta) = \int R(\theta,\delta) \pi(\lambda)\; d\lambda = \int\left[ \int l(\lambda,\delta)p(x|\lambda) \;dx\right] \pi(\lambda)\; d\lambda$$
+		
+
+Note that with $\widehat{\lambda}_\pi = (\alpha +x-1)\frac{\beta}{\beta+1}$, we can write	
+$$\widehat{\lambda}_\pi = \gamma x + (\alpha-1)\gamma,\quad \text{where} \quad \gamma = \frac{\beta}{\beta+1}.$$
+
+
+\underline{\textbf{Method I:}} Compute directly \newline
+		\begin{align*}
+		r\left(\pi, \widehat{\lambda}\right)
+		&  = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(l(\lambda, \widehat{\lambda})\right) \right] 
+		   = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(\frac{(\lambda-\widehat{\lambda})^2}{\lambda}\right) \right] \\
+		&  = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(\lambda - 2\widehat{\lambda} + \frac{1}{\lambda}\widehat{\lambda}^2 \right) \right] 
+		   = \mathbb{E}_\lambda\left[\lambda - 2\mathbb{E}_{x|\lambda}\left(\widehat{\lambda}\right) + \frac{1}{\lambda}\mathbb{E}_{x|\lambda}\left(\widehat{\lambda}^2\right)  \right] \\
+		& = \cdots
+		\end{align*}
+This method quickly becomes a computational nightmare. \newline 
+
+
+\underline{\textbf{Method II:}} Compute using the MSE: $\mathbb{E}(\lambda-\widehat{\lambda})^2 = Var(\widehat{\lambda}) + [E(\widehat{\lambda}) -\lambda]^2$ 
+
+		\begin{align*}
+		r\left(\pi, \widehat{\lambda}\right)
+		& = \mathbb{E}_\lambda\left[\mathbb{E}_{x|\lambda}\left(l(\lambda, \widehat{\lambda})\right) \right] 
+     = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(Var_{x|\lambda}(\widehat{\lambda}) + [\mathbb{E}_{x|\lambda}(\widehat{\lambda}) -\lambda]^2 \right) \right] \\
+    & = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + [\gamma\lambda + (\alpha-1)\gamma-\lambda]^2 \right) \right] \\
+    & = \mathbb{E}_\lambda\left[\frac{1}{\lambda}\left(\gamma^2\lambda + \lambda^2(\gamma-1)^2 + 2\lambda\gamma(\gamma-1)(\alpha-1) + \gamma^2(\alpha-1)^2 \right) \right] \\
+		& = \mathbb{E}_\lambda\left[\gamma^2 + \lambda\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{\lambda}\gamma^2(\alpha-1)^2  \right] \\ 		
+		& = \gamma^2 + \alpha\beta\frac{\gamma^2}{\beta^2} - 2\frac{\gamma^2}{\beta}(\alpha-1) + \frac{1}{(\alpha-1)\beta}\gamma^2(\alpha-1)^2 \\   
+	  & = \gamma^2 + \alpha\frac{\gamma^2}{\beta} - \frac{\gamma^2}{\beta}(\alpha-1)   		
+		  = \gamma^2  + \frac{\gamma^2}{\beta}   		
+		  = \gamma^2\left(1  + \frac{1}{\beta}\right)   	
+		  = \frac{\beta}{\beta+1} \quad \qed 
+		\end{align*}
+		where we used the following:
+		$$Var_{x|\lambda}(\widehat{\lambda}) = \gamma^2\lambda, \quad  \mathbb{E}_{x|\lambda}(\widehat{\lambda}) = \gamma\lambda +(\alpha-1)\gamma, \quad \gamma-1 = \frac{-\gamma}{\beta} $$
+\underline{\textbf{Method III:}} Compute by swapping expectations. \newline
+Switch the order of expectations, which is allowed by applying Bayes Theorem to change from the prior to the posterior, and Fubini's Theorem which allows us to swap the order of integration.   
+		$$r(\pi, \delta) =  \int\left[ \int l(\lambda,\delta)p(x|\lambda) \;dx\right] \pi(\lambda)\; d\lambda = \int\left[ \int l(\lambda,\delta)\pi(\lambda|x) \;d\lambda\right] p(x)\; dx =  \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right]$$
+Then, 
+\begin{align*}
+		r\left(\pi, \widehat{\lambda}\right)
+		& = \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(l(\lambda, \widehat{\lambda})\right) \right] 
+		  = \mathbb{E}_x\left[\mathbb{E}_{\lambda|x}\left(\lambda - 2\widehat{\lambda} + \frac{1}{\lambda}\widehat{\lambda}^2 \right) \right] \\
+		& = \mathbb{E}_x\left[\widehat{\lambda} + \frac{\beta}{\beta+1} - 2\widehat{\lambda} + \frac{1}{\widehat{\lambda}}\widehat{\lambda}^2  \right] 
+		  = \mathbb{E}_x\left[\frac{\beta}{\beta+1}  \right] \\
+		& = \frac{\beta}{\beta+1}  \qed
+\end{align*}
+where we used 
+$$\mathbb{E}_{\lambda|x}\left(\lambda\right) = \frac{(\alpha +x)\beta}{\beta+1} = \frac{(\alpha +x - 1)\beta}{\beta+1} + \frac{\beta}{\beta+1} = \widehat{\lambda} + \frac{\beta}{\beta+1},\text{ and } \mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda}\right) = \frac{1}{\widehat{\lambda}}. $$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
