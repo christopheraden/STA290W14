@@ -323,6 +323,125 @@ where we used
 $$\mathbb{E}_{\lambda|x}\left(\lambda\right) = \frac{(\alpha +x)\beta}{\beta+1} = \frac{(\alpha +x - 1)\beta}{\beta+1} + \frac{\beta}{\beta+1} = \widehat{\lambda} + \frac{\beta}{\beta+1},\text{ and } \mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda}\right) = \frac{1}{\widehat{\lambda}}. $$
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Chapter{Linear Regression and Gauss Markov Theorem in terms of Orthogonal Projection}
+
+In this chapter, we use the material in chapter 1 to prove the Gauss-Markov Theorem, and we interpret the Least Squares Estimator from the perspective of Orthogonal Projection.
+
+\section{The Gauss Markov Theorem}
+
+\[
+y_{n \times 1} = \mu_{n \times 1} + \epsilon_{n\times 1} 
+\]
+
+where $ \mu \in \mathcal{M} \subset \mathcal{R}^n, \ and \ \epsilon \sim N(0, \sigma^2 I_{n \times n }) $\\
+
+The Gauss Markov Theorem says, for any $ v \in \mathcal{R}^n, \ <v, P_M y > $ is the BLUE of $ < v, \mu > $. 
+
+\section{ Proof}
+
+\begin{itemize}
+
+\item  $ <v, P_My> $ is linear in y. Let $ P_M^{\perp} $ be the Projection to the subspace $ \mathcal{M}^{\perp} $ of $ \mathcal{R}^n $ that is orthogonal to $ \mathcal{M} $. Then for any $ v \in \mathcal{R}^n $ we can decompose $ v $ in to $  v = P_M v + P_M^{\perp}v $
+
+\[
+<v , P_MY > = < P_M v + P_M^{\perp}v ,  P_M Y > = < P_Mv, P_MY > + < P_M^{\perp} v, P_MY > = < P_M v, Y >
+\]
+
+\item  $ < v, P_MY > $ is unbiased.
+
+\[
+E <v, P_MY > = E< P_Mv, Y > = < P_Mv, \mu > = < v, \mu >, \forall \mu \in \mathcal{M} 
+\]
+
+\item $<v, P_My > $ has minimum variance among all linear unbiased estimators of 
+$ < v, \mu> $ 
+
+Let $< x, y > $ be a different linear unbiased estimator of $< v, P_My> $.
+
+\begin{enumerate}[$\rightarrow$]
+\item  $ E < x,y > = < x, Ey> = <x,\mu> = < v, \mu > \forall \mu \in \mathcal{M} $
+\item  $ <P_Mx, \mu> = <P_M v, \mu > \forall \mu \in \mathcal{M} $
+\item  $ P_M x = P_Mv $
+\end{enumerate}
+
+\begin{align*}
+Var<x,y> & = Var< x, \epsilon > \\
+& = Var< \sum<x, \phi_k> \phi_k , \epsilon > \\
+& = Var( \sum < x, \phi_k> <\phi_k, \epsilon>)\\
+& = \sum <x, \phi_k>^2 \sigma^2\\
+& = \sum^{dim(\mathcal{M})}_{k=1}< x, \phi_k>^2 \sigma^2 + \sum^n_{k = dim(\mathcal{M}) +1 }< x, \phi_k>^2 \sigma^2\\
+& = || P_M x||^2 \sigma^2  + ||P_M^{\perp} x ||^2 \sigma^2\\
+& = || P_M v||^2 \sigma^2  + ||P_M^{\perp} x ||^2 \sigma^2  
+\end{align*}
+
+\begin{align*}
+Var<v,P_My> & = Var< P_Mv, \epsilon> \\
+& = Var< \sum<P_Mv, \phi_k> \phi_k , \epsilon > \\
+& = Var( \sum < P_Mv, \phi_k> <\phi_k, \epsilon>)\\
+& = \sum <P_Mv, \phi_k>^2 \sigma^2\\
+& = \sum^{dim(\mathcal{M})}_{k=1}<P_M v, \phi_k>^2 \sigma^2 + \sum^n_{k = dim(\mathcal{M}) +1 }< P_Mv, \phi_k>^2 \sigma^2\\
+& = || P_M v||^2 \sigma^2  +0
+\end{align*}
+\end{itemize}
+
+$ Var<x,y > - Var < v, P_My> = ||P_M^{\perp} ||^2 \sigma^2 \geq 0  $ 
+
+\section{ LSE }
+
+
+\[
+Y = X \beta + \epsilon
+\]\\
+
+Let $ \mu = X \beta $, then $ \mu \in Col(X) $. BLUE of $ \mu \ is \ \hat{\mu} =  X(X^tX)^{-1}X^tY, \ and \ \hat{\mu} $ is a orthogonal projection of Y onto $ \mathcal{M} = Col(X). $ Orthogonalize the columns of X so that 
+
+\[
+X = [ \phi_1| \hdots | \phi_p ]
+\]
+
+then, $ \phi_1, \hdots, \phi_p $ is an orthonormal basis of $ \mathcal{M} $. Then one can write 
+
+
+\begin{align*}
+\hat{\mu} = P_My = XX^t Y & = [\phi_1|\hdots | \phi_n ] \left[
+\begin{array}{c}
+\phi_1^t\\
+\vdots \\
+\phi_p^t
+\end{array}
+\right]
+Y \\
+& =  [\phi_1|\hdots | \phi_n ] \left[
+\begin{array}{c}
+<\phi_1, Y>\\
+\vdots \\
+< \phi_p, Y>
+\end{array}
+\right]\\
+ & = \sum^p_{k=1} <\phi_k, Y> \phi_k
+\end{align*}
+
+\section{ Testing}
+
+$ H_0: \beta = 0 $
+
+Let $ T = || Y - \hat{\mu} ||^2 $ be the test statistic. 
+
+\begin{align*}
+T & = ||Y - P_M Y ||^2 \\
+& = ||P_M^{\perp}  Y ||^2 \\
+& = \sum^n_{k= p+1}  < Y, \phi_k > ^2 \\
+\end{align*}
+
+Under $ H_0$, $ Y \sim N(0, \sigma^2 I_n ) $, thus $ \frac{T}{\sigma^2} \sim \chi^2_{n-p}$ 
+
+\section{ Residual Plots}
+
+Residuals = $ Y- \hat{\mu} = Y - P_MY =  P_M^{\perp} Y \perp P_MY $ 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
