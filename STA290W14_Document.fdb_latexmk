@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1393363897 "STA290W14_Document.tex" "STA290W14_Document.pdf" "STA290W14_Document" 1393363898
+["pdflatex"] 1393791818 "STA290W14_Document.tex" "STA290W14_Document.pdf" "STA290W14_Document" 1393791819
   "/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/epsf/epsf.sty" 1298075956 27123 4572e7b856182a1e6e9df1c7cc21de80 ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
@@ -26,6 +26,7 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsmath.sty" 1156703163 79756 c9b39210cd9d3168825ff6f880d43821 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsopn.sty" 1156703163 5082 c925b14d21ef5c56597fe90e8e1686ad ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amstext.sty" 1156703163 3745 bcdc4858c6f7cfeb8e957b4284216414 ""
+  "/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd" 1254151887 2109 c400bd6c901edc4a09e4d53fcffd3b3c ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/base/report.cls" 1254151887 23630 e94bcdae2fe64080c9cd6c5639d834da ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/base/size11.clo" 1254151887 9058 640f9c40a6d912e30839a669c8a999ec ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/color.sty" 1156702488 6406 6f55214ce374a5b186b8781f4796f1f9 ""
@@ -56,10 +57,10 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/tools/enumerate.sty" 1254151720 3328 485bddd4058e8ddb2a8849a8d397dcbc ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/tools/verbatim.sty" 1312409015 7125 6b8323deb5c5c3a19b248762654143eb ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "STA290W14_Document.aux" 1393363898 1382 7487b86388936081f535eb88a8d1db6b ""
-  "STA290W14_Document.out" 1393363898 265 541372bd4e192ddee8b121ef35ebd05f ""
-  "STA290W14_Document.tex" 1393363897 19496 501c81009e3872e8744e4c4a16c59e26 ""
-  "STA290W14_Document.toc" 1393363898 331 1845a09ee59ec75ad5ad9e5b42fefe43 ""
+  "STA290W14_Document.aux" 1393791818 2056 9e5c70b303674570f8788d21fd6970da ""
+  "STA290W14_Document.out" 1393791818 665 52998b54b48e86d2b1a90a7413f13c40 ""
+  "STA290W14_Document.tex" 1393791797 23141 b1e181636c12063abdde530a422f360d ""
+  "STA290W14_Document.toc" 1393791818 821 e18b56b2c3a071927cc1662b5743e91b ""
   (generated)
   "STA290W14_Document.out"
   "STA290W14_Document.aux"
