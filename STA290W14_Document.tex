@@ -92,7 +92,7 @@ In particular,  $\| v \|^2 = \sum_{k=1}^d c_k^2$.
 
 Now suppose  $M\subset V$ is an $m$-dimensional linear subspace (the zero vector should be in here). We can define $M^{\perp}$ to be the set of all vectors in $V$ which are orthogonal to  every vector in $M$. In this case we can write $M \oplus M^{\perp} = V$ to signify that every $v\in V$ has a unique decomposition $v_M + v_M^\perp$ where $v_M\in M$ and $v_M^\perp \in M^\perp$. Often, in statistics, one needs to project a vector $v\in V$ to a subspace $M$. This operation is denoted $P_M v$ and is technically defined as $P_Mv := \argmin_{w \in M} ||w-v||^2 $. The following theorem shows that with a judicious choice of your orthonormal basis this projection is easily calculated
 
-\begin{claim}[{\bf Projections are easy}] If one constructs the orthonormal basis $\phi_1,\ldots, \phi_d$ of $V$ in such a way that
+\begin{claim}[{\bf Projections are easy}]\label{proj1} If one constructs the orthonormal basis $\phi_1,\ldots, \phi_d$ of $V$ in such a way that
 \begin{align*}
 	M &= span\{\phi_1,...,\phi_m\} \label{span} 
 \end{align*}
@@ -108,7 +108,7 @@ Moreover, since $P_Mv$ must be orthogonal to  $P_{M^{\perp}}v$, and $P_{M^{\perp
 
 
 The following is a simple consequence of the above claim, but it will be important later so we state it here
-\begin{corollary}
+\begin{corollary}\label{cor1}
 If $M$ is a linear subspace of $V$ and $v,w \in V$ then
 \[\langle v, P_M w\rangle = \langle P_M v, P_M w\rangle = \langle P_M v,  w\rangle. \]  
 \end{corollary}
@@ -184,8 +184,8 @@ Suppose $Y$ is an abstract Gaussian random vector in $V$ which satisfies $Y\sim 
 
 Once we have the above theorem the following corollary is easy to prove.
 
-\begin{corollary}
-Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathcal N(0,\sigma^2 I_d)$. Suppose $M$ is an $m$-dimensional linear subspace of $V$ which is spanned by $\phi_1,\ldots, \phi_m$. If $Y = \sum_{k=1}^d c_k \phi_k$ then the following three statements are true:
+\begin{corollary}\label{cor2}
+Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathcal N(0,\sigma^2 I_d)$. Suppose $M$ is an $m$-dimensional linear subspace of $V$ which is spanned by $\phi_1,\ldots, \phi_m$. If $Y = \sum_{k=1}^d c_k \phi_k$ and $v = \sum_{k=1}^d v_k \phi_k$ then the following three statements are true:
 \begin{enumerate}[(i)]
 \item $||P_MY||^2 = c_1^2+\cdots c_m^2 \sim \sigma^2 \chi^2_m$;
 \item $P_MY$ is independent of  $Y-P_MY$;
@@ -193,9 +193,94 @@ Suppose $\phi_1,\ldots, \phi_d$ is a orthonormal basis of $V$ and $Y\sim \mathca
 \end{enumerate}
 \end{corollary}
 
+Just as a simple example of power and simplicity of these statements notice that one can easily recover the fact that $\overline Y$ and $S^2$ are independent.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Application to linear models}
+
+The basic coordinate free linear model is that the random vector $Y$ satistfies
+\[
+Y = \mu + Z
+\]
+where $Y, \mu$ and $Z$ all take values in a vector space $V$, $Z\sim \mathcal N(0,\sigma^2I)$ within the vector space $V$ and $\mu$ is assumed to be in some linear subspace $M\subset V$. The Gauss-Markov theorem shows that the optimal estimate of $\mu$ is the projection of $Y$ onto $M$, i.e. $\hat\mu = P_M Y$. 
+
+\subsection{Gauss-Markov}
+\begin{claim}[Gauss-Markov]
+For any $v\in M$, the minimium variance linear unbiased estimate of $\langle v,\mu\rangle$ is given by $\langle v,\hat\mu\rangle$ where $\hat\mu := P_M Y$. 
+\end{claim}
+
+
+\begin{proof}
+There are two main facts in the proof of the Gauss-Markov Theorem. First, notice 
+\begin{align}
+\langle v,\hat\mu\rangle &= \langle P_Mv,P_M Y \rangle = \langle P_Mv,Y \rangle \label{GMform}
+\end{align}
+which follows by Corollary \ref{cor1}. 
+The second fact is to simply unravel what it means for a linear estimate, $\langle w,Y\rangle$ of $\langle v,\mu\rangle$ to be unbiased. Notice that $E\langle w,Y\rangle = \langle w, \mu\rangle= \langle P_M w, \mu\rangle$ so the unbiased constrant becomes
+\begin{equation}
+\langle P_Mw,\, \mu\rangle =  \langle P_M v,\, \mu\rangle\text{ for all $\mu\in M$}.
+\end{equation} 
+Now this implies that $P_Mw = P_Mv$ because the above formulat implies $\langle  P_Mw - P_Mv, \mu \rangle = 0$ then plug in $\mu = P_Mw - P_Mv\in M$. To summarize
+\begin{quote}
+\em
+A necessary and sufficient condition that $\langle w, Y\rangle$ be a linear unbiased estimate of $\langle v, \mu\rangle$ is that $P_M w = P_M v$.
+\end{quote}
+By (\ref{GMform}) we know that the Gauss-Markov estimate is a linaer unbisaed estimate.
+Now it is easy to show the Gauss-Markov estimator has minimum variance among linaer unbisaed estimates
+\begin{align*}
+\text{var}(\langle w, Y\rangle) &= \text{var}(\langle w, Z\rangle) \\
+ &= \sigma^2\|w \|^2, \quad\text{by \ref{cor2}} \\
+ &= \sigma^2\|P_Mw \|^2 + \sigma^2\|P_M^\perp w \|^2\\
+ &\geq \sigma^2\|P_Mw \|^2 \\
+ & = \sigma^2\|P_M v \|^2,\quad\text{if $\langle w, Y\rangle$ is unbiased} \\
+ & = \text{var}(\langle P_M v, Y\rangle) \\
+ & = \text{var}(\langle v, \hat\mu\rangle).
+\end{align*}
+
+\end{proof}
+
+
+\subsection{Regression}
+Notice that the Gauss-markov theorem has implications for ANOVA, regression and most other linear statistical models. In this seciton we explore the Gauss-Markov theorem in the context of regression. The standard regression setup is 
+\[
+Y = X \beta + Z
+\]
+where $X$ is the design maktrix with $p$ columns  and $\beta$ is a $p$ dimensional coefficient vector of unkonwns and $Z\sim \mathcal N(0,\sigma^2 I)$. This is indeed equivalent to our basic linear model
+\[Y = \mu + Z \]
+where now $\mu$ is assumed to be in the linear space $M:= \{ \beta_1 x_1+\cdots \beta_p x_p:\beta_k\in \Bbb R\}$ where $x_k$ is the $k^\text{th}$ column of $X$. 
+
+To reconsile the OLS estimate  $\hat\beta = (X^tX)^{-1}X^t Y$ and the Gauss-markov estimate $\hat\mu = P_M Y$ simply notice that the OLS estimate of $\mu$ is simply $X\hat \beta = X(X^tX)^{-1}X^t Y$ which is the same as $P_M Y$. In paricular, $X(X^tX)^{-1}X^t$ is the coordinate-matrix form is $P_M$. This is easy to see when one adds the additional assumption that the columns of $X$ are orthonormal. In this case we know $X^tX = I$ and from Claim \ref{proj1} we know how to do the projection:
+\begin{align*}
+P_M Y &= \sum_{k=1}^p \langle Y, x_k\rangle x_k \\
+&= XX^tY,\quad\text{since $X^tY$ gives $\langle Y, x_k\rangle$}\\
+&= X(X^tX)^{-1}X^tY \\
+&= X\hat \beta.  
+\end{align*}
+
+Now a few nice facts from regression automatically follow from the basic facts of projection. In partucular we know that $P_M$ is independent of $Y-P_MY$ from Corollary \ref{cor2}. This translates to the fact that 
+\begin{quote}
+\em The estimated residuals $Y - X\hat \beta$ and the esimated mean $X\hat \beta$ are independent (and orthogonal as vectors).
+\end{quote}
+We also know that when $\mu$ is the zero vector (i.e. there is no signal) then $\|\hat \mu \|^2 = \|X\hat\beta \|^2 = \|P_M Y \|^2\sim  \sigma^2 \chi^2_p$. In a similar manner it is also clear that $\|Y - \hat \mu \|^2 \sigma^2 \chi^2_{n-p}$. This gives the classic $F$ test for $H_0:\mu=0$
+\begin{quote}
+\em
+Under the null hypothesis that $\mu = 0$ the random variable $F:= {\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ has the same distrubtion as ${Z_1}/{Z_2}$ where $Z_1\sim \chi^2_p$ and $Z_2\sim \chi^2_{n-p}$ are indepednent random variables.
+\end{quote}
+Note that the independence again comes from the fact that projections of spherical Gaussians are independent of their residuals. This way of viewing the $F$ test is very natural. ${\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ measures the size of $\| \hat mu\|^2$ normalized by and estimate of $\sigma^2$ so $F$ is unit free. One can also understand $\| \hat mu\|^2$ as quantifying the explained varability in $Y$ and $\|Y - \hat \mu \|^2$ as the unexplained variability in $Y$.
+
+\subsection{Likelihood ratio statistic}
+
+
+\section{Gaussian $E(X_0|X_1,\ldots, X_n)$ as projection}
+
+
+Most of what we have done with our absract vector space results could have been don't just as easy (albite a bit more messy) with coordinates. This hides the true power and generality of the abstract projection results. In this section we analyze projection of random variables which have no natural coordinate vector representation. In paricular we show that Gaussian conditional expectation is simply linear projection onto the linear space of the observations. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\chapter{Fubini}
 
 \chapter{Ideas Involving Bayesian Risk}
 
@@ -322,124 +407,6 @@ r\left(\pi, \widehat{\lambda}\right)
 where we used 
 $$\mathbb{E}_{\lambda|x}\left(\lambda\right) = \frac{(\alpha +x)\beta}{\beta+1} = \frac{(\alpha +x - 1)\beta}{\beta+1} + \frac{\beta}{\beta+1} = \widehat{\lambda} + \frac{\beta}{\beta+1},\text{ and } \mathbb{E}_{\lambda|x}\left(\frac{1}{\lambda}\right) = \frac{1}{\widehat{\lambda}}. $$
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Linear Regression and Gauss Markov Theorem in terms of Orthogonal Projection}
-
-In this chapter, we use the material in chapter 1 to prove the Gauss-Markov Theorem, and we interpret the Least Squares Estimator from the perspective of Orthogonal Projection.
-
-\section{The Gauss Markov Theorem}
-
-\[
-y_{n \times 1} = \mu_{n \times 1} + \epsilon_{n\times 1} 
-\]
-
-where $ \mu \in \mathcal{M} \subset \mathcal{R}^n, \ and \ \epsilon \sim N(0, \sigma^2 I_{n \times n }) $\\
-
-The Gauss Markov Theorem says, for any $ v \in \mathcal{R}^n, \ <v, P_M y > $ is the BLUE of $ < v, \mu > $. 
-
-\section{ Proof}
-
-\begin{itemize}
-
-\item  $ <v, P_My> $ is linear in y. Let $ P_M^{\perp} $ be the Projection to the subspace $ \mathcal{M}^{\perp} $ of $ \mathcal{R}^n $ that is orthogonal to $ \mathcal{M} $. Then for any $ v \in \mathcal{R}^n $ we can decompose $ v $ in to $  v = P_M v + P_M^{\perp}v $
-
-\[
-<v , P_MY > = < P_M v + P_M^{\perp}v ,  P_M Y > = < P_Mv, P_MY > + < P_M^{\perp} v, P_MY > = < P_M v, Y >
-\]
-
-\item  $ < v, P_MY > $ is unbiased.
-
-\[
-E <v, P_MY > = E< P_Mv, Y > = < P_Mv, \mu > = < v, \mu >, \forall \mu \in \mathcal{M} 
-\]
-
-\item $<v, P_My > $ has minimum variance among all linear unbiased estimators of 
-$ < v, \mu> $ 
-
-Let $< x, y > $ be a different linear unbiased estimator of $< v, P_My> $.
-
-\begin{enumerate}[$\rightarrow$]
-\item  $ E < x,y > = < x, Ey> = <x,\mu> = < v, \mu > \forall \mu \in \mathcal{M} $
-\item  $ <P_Mx, \mu> = <P_M v, \mu > \forall \mu \in \mathcal{M} $
-\item  $ P_M x = P_Mv $
-\end{enumerate}
-
-\begin{align*}
-Var<x,y> & = Var< x, \epsilon > \\
-& = Var< \sum<x, \phi_k> \phi_k , \epsilon > \\
-& = Var( \sum < x, \phi_k> <\phi_k, \epsilon>)\\
-& = \sum <x, \phi_k>^2 \sigma^2\\
-& = \sum^{dim(\mathcal{M})}_{k=1}< x, \phi_k>^2 \sigma^2 + \sum^n_{k = dim(\mathcal{M}) +1 }< x, \phi_k>^2 \sigma^2\\
-& = || P_M x||^2 \sigma^2  + ||P_M^{\perp} x ||^2 \sigma^2\\
-& = || P_M v||^2 \sigma^2  + ||P_M^{\perp} x ||^2 \sigma^2  
-\end{align*}
-
-\begin{align*}
-Var<v,P_My> & = Var< P_Mv, \epsilon> \\
-& = Var< \sum<P_Mv, \phi_k> \phi_k , \epsilon > \\
-& = Var( \sum < P_Mv, \phi_k> <\phi_k, \epsilon>)\\
-& = \sum <P_Mv, \phi_k>^2 \sigma^2\\
-& = \sum^{dim(\mathcal{M})}_{k=1}<P_M v, \phi_k>^2 \sigma^2 + \sum^n_{k = dim(\mathcal{M}) +1 }< P_Mv, \phi_k>^2 \sigma^2\\
-& = || P_M v||^2 \sigma^2  +0
-\end{align*}
-\end{itemize}
-
-$ Var<x,y > - Var < v, P_My> = ||P_M^{\perp} ||^2 \sigma^2 \geq 0  $ 
-
-\section{ LSE }
-
-
-\[
-Y = X \beta + \epsilon
-\]\\
-
-Let $ \mu = X \beta $, then $ \mu \in Col(X) $. BLUE of $ \mu \ is \ \hat{\mu} =  X(X^tX)^{-1}X^tY, \ and \ \hat{\mu} $ is a orthogonal projection of Y onto $ \mathcal{M} = Col(X). $ Orthogonalize the columns of X so that 
-
-\[
-X = [ \phi_1| \hdots | \phi_p ]
-\]
-
-then, $ \phi_1, \hdots, \phi_p $ is an orthonormal basis of $ \mathcal{M} $. Then one can write 
-
-
-\begin{align*}
-\hat{\mu} = P_My = XX^t Y & = [\phi_1|\hdots | \phi_n ] \left[
-\begin{array}{c}
-\phi_1^t\\
-\vdots \\
-\phi_p^t
-\end{array}
-\right]
-Y \\
-& =  [\phi_1|\hdots | \phi_n ] \left[
-\begin{array}{c}
-<\phi_1, Y>\\
-\vdots \\
-< \phi_p, Y>
-\end{array}
-\right]\\
- & = \sum^p_{k=1} <\phi_k, Y> \phi_k
-\end{align*}
-
-\section{ Testing}
-
-$ H_0: \beta = 0 $
-
-Let $ T = || Y - \hat{\mu} ||^2 $ be the test statistic. 
-
-\begin{align*}
-T & = ||Y - P_M Y ||^2 \\
-& = ||P_M^{\perp}  Y ||^2 \\
-& = \sum^n_{k= p+1}  < Y, \phi_k > ^2 \\
-\end{align*}
-
-Under $ H_0$, $ Y \sim N(0, \sigma^2 I_n ) $, thus $ \frac{T}{\sigma^2} \sim \chi^2_{n-p}$ 
-
-\section{ Residual Plots}
-
-Residuals = $ Y- \hat{\mu} = Y - P_MY =  P_M^{\perp} Y \perp P_MY $ 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
