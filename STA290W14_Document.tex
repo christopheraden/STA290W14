@@ -200,13 +200,15 @@ Just as a simple example of power and simplicity of these statements notice that
 
 \section{Application to linear models}
 
-The basic coordinate free linear model is that the random vector $Y$ satisfies
+The basic coordinate-free linear model 
 \[
 Y = \mu + Z
 \]
-where $Y, \mu$ and $Z$ all take values in a vector space $V$, $Z\sim \mathcal N(0,\sigma^2I)$ within the vector space $V$ and $\mu$ is assumed to be in some linear subspace $M\subset V$. The Gauss-Markov theorem shows that the optimal estimate of $\mu$ is the projection of $Y$ onto $M$, i.e. $\hat\mu = P_M Y$. 
+where $Y, \mu$ and $Z$ all take values in a vector space $V$, the mean vector $\mu$ is assumed to be in a linear subspace $M\subset V$ and $Z\sim \mathcal N(0,\sigma^2I)$. 
 
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gauss-Markov}
+The Gauss-Markov theorem effectively says that the optimal estimate of $\mu$ is the projection of $Y$ onto $M$, i.e. $\hat\mu = P_M Y$. 
 \begin{claim}[Gauss-Markov]
 For any $v\in M$, the minimum variance linear unbiased estimate of $\langle v,\mu\rangle$ is given by $\langle v,\hat\mu\rangle$ where $\hat\mu := P_M Y$. 
 \end{claim}
@@ -215,14 +217,14 @@ For any $v\in M$, the minimum variance linear unbiased estimate of $\langle v,\m
 \begin{proof}
 There are two main facts in the proof of the Gauss-Markov Theorem. First, notice 
 \begin{align}
-\langle v,\hat\mu\rangle &= \langle P_Mv,P_M Y \rangle = \langle P_Mv,Y \rangle \label{GMform}
+\langle v,\hat\mu\rangle &= \langle v,P_M Y \rangle =\langle P_Mv,P_M Y \rangle = \langle P_Mv,Y \rangle \label{GMform}
 \end{align}
 which follows by Corollary \ref{cor1}. 
-The second fact is to simply unravel what it means for a linear estimate, $\langle w,Y\rangle$ of $\langle v,\mu\rangle$ to be unbiased. Notice that $E\langle w,Y\rangle = \langle w, \mu\rangle= \langle P_M w, \mu\rangle$ so the unbiased constraint becomes
+The second fact is to simply unravel what it means for a linear estimate $\langle w,Y\rangle$  to be unbiased. Notice that $E\langle w,Y\rangle = \langle w, \mu\rangle= \langle P_M w, \mu\rangle$ so the unbiased constraint becomes
 \begin{equation}
 \langle P_Mw,\, \mu\rangle =  \langle P_M v,\, \mu\rangle\text{ for all $\mu\in M$}.
 \end{equation} 
-Now this implies that $P_Mw = P_Mv$ because the above formula implies $\langle  P_Mw - P_Mv, \mu \rangle = 0$ then plug in $\mu = P_Mw - P_Mv\in M$. To summarize
+Now this implies that $P_Mw = P_Mv$ (because the above formula implies $\langle  P_Mw - P_Mv, \nu \rangle = 0$ for  $\nu := P_Mw - P_Mv\in M$). To summarize
 \begin{quote}
 \em
 A necessary and sufficient condition that $\langle w, Y\rangle$ be a linear unbiased estimate of $\langle v, \mu\rangle$ is that $P_M w = P_M v$.
@@ -251,7 +253,7 @@ where $X$ is the design matrix with $p$ columns  and $\beta$ is a $p$ dimensiona
 \[Y = \mu + Z \]
 where now $\mu$ is assumed to be in the linear space $M:= \{ \beta_1 x_1+\cdots \beta_p x_p:\beta_k\in \Bbb R\}$ where $x_k$ is the $k^\text{th}$ column of $X$. 
 
-To reconcile the OLS estimate  $\hat\beta = (X^tX)^{-1}X^t Y$ and the Gauss-Markov estimate $\hat\mu = P_M Y$ simply notice that the OLS estimate of $\mu$ is simply $X\hat \beta = X(X^tX)^{-1}X^t Y$ which is the same as $P_M Y$. In particular, $X(X^tX)^{-1}X^t$ is the coordinate-matrix form is $P_M$. This is easy to see when one adds the additional assumption that the columns of $X$ are orthonormal. In this case we know $X^tX = I$ and from Claim \ref{proj1} we know how to do the projection:
+To reconcile the OLS estimate  $\hat\beta = (X^tX)^{-1}X^t Y$ and the Gauss-Markov estimate $\hat\mu = P_M Y$ simply notice that the OLS estimate of $\mu$ is simply $X\hat \beta = X(X^tX)^{-1}X^t Y$ which is the same as $P_M Y$. In particular, $X(X^tX)^{-1}X^t$ is the coordinate-matrix form of $P_M$. This is easy to see when one adds the additional assumption that the columns of $X$ are orthonormal. In this case we know $X^tX = I$ and from Claim \ref{proj1} we know how to do the projection:
 \begin{align*}
 P_M Y &= \sum_{k=1}^p \langle Y, x_k\rangle x_k \\
 &= XX^tY,\quad\text{since $X^tY$ gives $\langle Y, x_k\rangle$}\\
@@ -274,11 +276,11 @@ Note that the independence again comes from the fact that projections of spheric
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Likelihood ratio statistic}
 
-The basic goal of this section is to use our understanding of Gaussian projections to understand why $2\times(\text{log ratio statistic})= 2\Delta \ell(\hat \mu)$ is distributed $\chi^2_{\Delta \text{dim}}$ under the null hypothesis and the assumption the null and alternative models are nested and locally linear. Notice I'm using the notation $\Delta \text{dim}$ to denote the different in dimensions going from the null model to the full model.
+The basic goal of this section is to use our understanding of Gaussian projections to understand why $2\times(\text{log ratio statistic})= 2\Delta \ell(\hat \mu)$ is distributed $\chi^2_{\Delta \text{dim}}$ under the null hypothesis where $\Delta \text{dim}$ to denotes the different in dimensions going from the null model to the full model.
 
-To start lets examine the class linear model
+To start lets examine the classic linear model
 \[Y = \mu + Z,\quad Z\sim\mathcal N(0,\sigma^2I). \]
-The hypothesis test we are interested in is:
+Our hypothesis test is
 \begin{align*}
 &H_0: \mu\in M_0\\
 &H_1: \mu \in M_1
@@ -289,7 +291,7 @@ One can use the random coefficients under this basis to generate a log-likelihoo
 \begin{align*}
 \ell(Y|\mu) =-\frac{1}{2\sigma^2} \|Y - \mu \|^2 - \frac{n}{2}\log(2\pi\sigma^{2})
 \end{align*}
-Now it's clear that the MLE estimates $\hat\mu_{M_k}=P_{M_k}Y$ since projections are characterized by the minimizer of the square norm. Therefore
+Now it's clear that the MLE estimates $\hat\mu_{M_0}$ and $ \hat\mu_{M_1}$ just equal the projections $P_{M_0}Y$ and $P_{M_1}Y$ since projections are characterized by the minimizer of the square norm. Therefore
 \begin{align*}
 2\Delta \ell(Y|\hat\mu) &= 2\ell(Y|P_{M_1}Y) - 2\ell(Y|P_{M_0}Y) \\
  &= -\frac{1}{\sigma^2} \|Y - P_{M_1}Y \|^2 + \frac{1}{\sigma^2} \|Y - P_{M_0}Y \|^2 \\
@@ -297,16 +299,18 @@ Now it's clear that the MLE estimates $\hat\mu_{M_k}=P_{M_k}Y$ since projections
  &= \frac{1}{\sigma^2}  \sum_{k=1}^{d_1-d_0}{\langle Y,\psi_k \rangle^2} \sim \chi^2_{d_1 - d_0}, \qquad \text{by Corollary \ref{cor2}}
 \end{align*}
 
-The interesting thing is that the distribution $\chi^2_{d_1 - d_1}$ persists as an approximation for $2\Delta \ell(\hat\mu|Y)$  under much greater generality. The conditions for this approximation  are, loosely, that the the statistical model has the local asymptotic normality property (LAN for short), the signal-to-noise ratio in the observations goes to infinity, and the two models $M_0$ and $M_1$ are locally linear with local dimension $d_0$ and $d_1$ respectively. If one doesn't have the local linear property of $M_0$, say, then the asymptotic distribution can be a mixture of chi-square random variables.
+The interesting thing is that the distribution $\chi^2_{d_1 - d_1}$ persists as an approximation for $2\Delta \ell(\hat\mu|Y)$  under much greater generality. The conditions for this approximation  are, loosely, that the the statistical model has the local asymptotic normality property (LAN for short), the signal-to-noise ratio of the observations goes to infinity, and the two models $M_0$ and $M_1$ are locally linear with local dimension $d_0$ and $d_1$ respectively. If one doesn't have the local linear property of $M_0$, say, then the asymptotic distribution can be a mixture of chi-square random variables.
 To see why this is true we start with a small extension of the classic linear model
 \[ Y= \mu + {\sigma} Z \]
-where $\mu\in M_0\subset M_1$ are now only locally linear  with local dimension $d_0$ and $d_1$ respectively (let suppose the embedded space $V$ is still a linear vector space). We will analyze  $2\Delta \ell(Y|\hat\mu)$  in the case that $\sigma\rightarrow 0$  to model the situation where the signal-to-noise of the observations goes to infinity.  A good example to keep in mind is  the case where  $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0$ is the two dimensional sphere embedded in $M_1$. 
+where now $ M_0\subset M_1$ are  only assumed locally linear  with local dimension $d_0$ and $d_1$ respectively (let suppose the embedded space $V$ is still a linear vector space). We will analyze  $2\Delta \ell(Y|\hat\mu)$  in the case that $\sigma\rightarrow 0$  to model the situation where the signal-to-noise of the observations goes to infinity.  A good example to keep in mind is  the case where  $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0$ is the two dimensional sphere embedded in $M_1$. 
 
-To analyze the asymptotic distribution of $2\Delta \ell(Y|\hat\mu)$ in this case, suppose the true $\mu$ is in  $ M_0$.
+To analyze the asymptotic distribution of $2\Delta \ell(Y|\hat\mu)$ in this case suppose the true $\mu$ is in  $ M_0$.
 Notice that we are still free to set down a orthonormal basis of $V$
 \[\phi_1,\ldots, \phi_{d_0},\,\, \psi_{1},\ldots, \psi_{d_1 - d_0},\,\, \xi_1,\ldots \xi_{d_1 - d}\]
 but we do so in such a way that ${\phi_k}$ spans the local linear approximation of $M_0$ around the true $\mu$, and similarly that ${\phi_k, \psi_j}$ spans the local linear approximation of $M_1$ around the true $\mu$.
-Now as $\sigma\rightarrow 0$, the $Y$ gets closer to $\mu$ in a neighborhood that the local linear approximation becomes accurate. In this case, the estimates $\hat\mu_{\tiny M_k}$ are well approximated by the projections $P_{L_\mu M_0} Y$ and $P_{L_\mu M_1} Y$ onto the local linear approximations $L_\mu M_0$ and $L_\mu M_1$. Therefore
+Now as $\sigma\rightarrow 0$, the $Y$ gets closer to $\mu$ and the local linear approximation of $M_0$ and $M_1$ becomes accurate. In this case, the estimates
+\[ \text{$\hat\mu_{\tiny M_0}\approx P_{L_\mu M_0} Y$ and $\hat\mu_{\tiny M_1}\approx P_{L_\mu M_1} Y$}\]
+ where $L_\mu M_0$ and $L_\mu M_1$ denote the local linear approximations at $\mu$. Therefore
 \begin{align*}
 2\Delta \ell(Y|\hat\mu) 
 &= 2\ell(Y|\hat\mu_{M_1}) - 2\ell(Y|\hat\mu_{M_0}) \\
@@ -315,15 +319,15 @@ Now as $\sigma\rightarrow 0$, the $Y$ gets closer to $\mu$ in a neighborhood tha
 \end{align*}
 
 
-It now becomes clear what happens when the local linear approximation doesn't hold. For example suppose $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0=\{ \|v\|_p=1: v\in V\}$ where $p<1$. In this case $M_0$ has kinks at the each axis. Suppose the true $\mu$ is at the tip of one of those kinks. Then as $\sigma^2\rightarrow 0$, the $Y$ gets closer to $\mu$ and the resulting estimate $\hat\mu_{M_0}$ starts to behave like the projection of $Y$ onto a half line. This makes the term $\frac{1}{\sigma^2} \|Y - P_{M_0}Y \|^2$ in $2\Delta \ell(Y|\hat\mu) $ behave like a mixture of chi-squares depending on if the projection of $Y$ goes to the point of the half line or to the interior of the half line. 
+It now becomes clear what happens when the local linear approximation doesn't hold. For example suppose $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0=\{ \|v\|_p=1: v\in V\}$ where $p<1$. In this case $M_0$ has a kink at the each axis. Suppose the true $\mu$ is at the tip of one of those kinks. Then as $\sigma^2\rightarrow 0$, the $Y$ gets closer to $\mu$ and the resulting estimate $\hat\mu_{M_0}$ starts to behave like the projection of $Y$ onto a half line. This makes the term $\frac{1}{\sigma^2} \|Y - P_{M_0}Y \|^2$ in $2\Delta \ell(Y|\hat\mu) $ behave like a mixture of chi-squares depending on if the projection of $Y$ lands on the tip of the half line or to the interior of the half line. 
 
-Finally, what happens when one doesn't have the nice classical linear model $Y = \mu + \sigma Z$? In this case we observe data, in the form of a vector of observations $Y$, and we have access only to a log-likelihood surface $\ell(Y|\mu)$. The local asymptotic normality condition essentially says that the MLE $\hat\mu$ (computed under model $M_1$) has the distribution $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$ where $F$ is something like the expected Hessian $\ell$ with one data point. The idea is that, in this case, the likelihood surface of the whole data set $\ell(Y|\mu)$ is well approximated by the likelihood surface of $\hat\mu$ under the model $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$. This suggested that we can make a new ``data vector'' $Y_{new} = F^{1/2}\hat\mu$ where $Y_{new}= \theta + Z$ and $Z\sim \mathcal N(0, n^{-1}I)$? This is the exact situation we were in earlier, with the signal to noise going to infinity, and the chi-square results still hold.
+Finally, what happens when one doesn't have the nice classical linear model $Y = \mu + \sigma Z$? In this case we observe data, in the form of a vector of observations $Y$, and we have access only to a log-likelihood surface $\ell(Y|\mu)$. The local asymptotic normality condition essentially says that the MLE $\hat\mu$ (computed under model $M_1$) has the distribution $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$ where $F$ is something like the expected Hessian $\ell$ with one data point. The idea is that, in this case, the likelihood surface of the whole data set $\ell(Y|\mu)$ is well approximated by the likelihood surface of $\hat\mu$ under the model $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$. This suggested that we can make a new ``data vector'' $Y_{new} = F^{1/2}\hat\mu$ where $Y_{new}= \theta + Z$ and $Z\sim \mathcal N(0, n^{-1}I)$. This is the exact situation we were in earlier, with the signal to noise going to infinity, and the chi-square results still hold.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gaussian $E(X_0|X_1,\ldots, X_n)$ as projection}
 
 
-Most of what we have done with our abstract vector space results could have been don't just as easy (albeit a bit more messy) with coordinates. This hides the true power and generality of the abstract projection results. In this section we analyze projection of random variables which have no natural coordinate vector representation. In particular we show that Gaussian conditional expectation is simply linear projection onto the linear space of the observations. 
+Most of what we have done with our abstract vector space results could have been don't just as easy (albeit a bit more messy) with coordinates. This hides the true power and generality of the abstract projection results. In this section we analyze projection of random variables which have no natural coordinate vector representation. In particular we show that Gaussian conditional expectation is simply linear projection onto the linear span of the observations. 
 
 Suppose $X_0,X_1,\ldots, X_n$ are jointly Gaussian random variables. We can also suppopse, without loss of generality, that $E(X_k)=0$ for all $k=0,1,\ldots, n$.
 To derive the conditional distribution $X_0|X_1,\ldots, X_n$ notice first
@@ -336,23 +340,24 @@ In particular if we let $M$ denote the linear vector space $\{a_1 X_1 + \cdots a
 \end{equation}
  This establishes that $E(X_0|X_1,\ldots, X_n)$ is a projection. To be specific, let $V=\{a_0 X_0 + \cdots a_n X_n: a_k\in\Bbb R\}$ be the full set of linear combinations of $X_0,X_1,\ldots, X_n$. This is obviously a linear space of random variables. To make $V$ an abstract vector space we need an inner product for elements of $V$. The natural inner product is given by covariance:
 \[ \text{For any $X,Y\in V$ define $\langle X,Y\rangle :=\text{cov}(X,Y)$.}  \]
-Notice that the norm $\| X\|$ gives the standard deviation of $X$. Using this inner product structure it is clear that equation (\ref{condexp1}) shows that 
+Notice that the norm $\| X\|$ gives the standard deviation of $X$. Using this inner product structure it is clear that equation (\ref{condexp1}) gives
 \begin{equation}
 \label{condexp2} 
 \boxed{E(X_0|X_1,\ldots, X_n) = P_M X_0.} 
 \end{equation}
-We will use our understanding of projection to derive $E(X_0|X_1,\ldots, X_n)$ but first we mention that
-as a consequence of this projection we have that 
+We will use our understanding of projection to derive $E(X_0|X_1,\ldots, X_n)$ but first we mention that,
+as a consequence of this projection, we have that 
 \begin{equation} 
 \label{indep}
 \boxed{X_0 - P_M X_0 \perp X_1,\ldots, X_n}
 \end{equation}
+since $X_k\in M$
 where $\perp$ in this case means uncorrelated (i.e. independent since we are working with Gaussians). The above fact has an important consequence which will allow us to derive $\text{var}(X_0|X_1,\ldots, X_n)$
 \[
 \boxed{\text{var}(X_0 - P_M X_0 ) \overset{(\ref{indep})}= \text{var}(X_0 - P_M X_0 |X_1,\ldots, X_n) = \text{var}(X_0  |X_1,\ldots, X_n)}
 \]
 where the last equality follows since $P_M X_0= E(X_0|X_1,\ldots, X_n)$ is not random given $X_1,\ldots, X_n$.
-So $\text{var}(X_0  |X_1,\ldots, X_n)$ is simply the marginal variance of the residual $X_0 - P_M X_0$.  Notice that if one has a fast algorithm for computing  $E(X_0|X_1,\ldots, X_n)$  and for simulating $X_0,\ldots, X_n$ then one can easily generate a conditional simulation of $X_0  |X_1,\ldots, X_n$. In particular since $X_0  |X_1,\ldots, X_n\sim \mathcal N(E(X_0|X_1,\ldots, X_n), \text{var}(X_0|X_1,\ldots, X_n))$ to generate a simulation  one simply adds a random $Z$ to  $E(X_0|X_1,\ldots, X_n) $ where $Z\sim \mathcal N(0, \text{var}(X_0|X_1,\ldots, X_n))$. By the above equation we can generate such a $Z$ by simply generating the prediction residual $X^*_0 - P_{M^*} X_0^*$ on a new independent simulation $X_0^*, \ldots, X_n^*$.
+So $\text{var}(X_0  |X_1,\ldots, X_n)$ is simply the marginal variance of the residual $X_0 - P_M X_0$.  If one has a fast algorithm for computing  $E(X_0|X_1,\ldots, X_n)$  and for simulating $X_0,\ldots, X_n$ then one can easily generate a conditional simulation of $X_0  |X_1,\ldots, X_n$. In particular since $X_0  |X_1,\ldots, X_n\sim \mathcal N(E(X_0|X_1,\ldots, X_n), \text{var}(X_0|X_1,\ldots, X_n))$ to generate a simulation  one simply adds a random $Z$ to  $E(X_0|X_1,\ldots, X_n) $ where $Z\sim \mathcal N(0, \text{var}(X_0|X_1,\ldots, X_n))$. By the above equation we can generate such a $Z$ by simply generating the prediction residual $X^*_0 - P_{M^*} X_0^*$ on a new independent simulation $X_0^*, \ldots, X_n^*$.
 
 Now lets use our understanding of projections to compute (\ref{condexp2}). In paricular we need to find and orthonormal basis $\phi_1,\ldots, \phi_n$ of $M$ and then write $P_M X_0 = \sum_{k=1}^n \langle X_0, \phi_k \rangle \phi_k$. Notice that orthonormality in this case means uncorrelated. To uncorrelate $X_1,\ldots, X_n$ simply multiply by $\Sigma_{nn}^{-1/2}$
 \[\begin{pmatrix}
@@ -363,7 +368,7 @@ Now lets use our understanding of projections to compute (\ref{condexp2}). In pa
 X_1 \\ \vdots \\X_n
 \end{pmatrix}.
   \]
-  In this case the coefficnets $\langle X_0, \phi_k \rangle$ can be computed
+This gives our orthonormal basis of $M$, the coefficient of which  can be computed as
  \begin{align*}
   \begin{pmatrix}
 \langle X_0,\phi_1\rangle \\ \vdots \\\langle X_0,\phi_n\rangle
