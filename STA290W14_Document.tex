@@ -200,7 +200,7 @@ Just as a simple example of power and simplicity of these statements notice that
 
 \section{Application to linear models}
 
-The basic coordinate free linear model is that the random vector $Y$ satistfies
+The basic coordinate free linear model is that the random vector $Y$ satisfies
 \[
 Y = \mu + Z
 \]
@@ -208,7 +208,7 @@ where $Y, \mu$ and $Z$ all take values in a vector space $V$, $Z\sim \mathcal N(
 
 \subsection{Gauss-Markov}
 \begin{claim}[Gauss-Markov]
-For any $v\in M$, the minimium variance linear unbiased estimate of $\langle v,\mu\rangle$ is given by $\langle v,\hat\mu\rangle$ where $\hat\mu := P_M Y$. 
+For any $v\in M$, the minimum variance linear unbiased estimate of $\langle v,\mu\rangle$ is given by $\langle v,\hat\mu\rangle$ where $\hat\mu := P_M Y$. 
 \end{claim}
 
 
@@ -218,17 +218,17 @@ There are two main facts in the proof of the Gauss-Markov Theorem. First, notice
 \langle v,\hat\mu\rangle &= \langle P_Mv,P_M Y \rangle = \langle P_Mv,Y \rangle \label{GMform}
 \end{align}
 which follows by Corollary \ref{cor1}. 
-The second fact is to simply unravel what it means for a linear estimate, $\langle w,Y\rangle$ of $\langle v,\mu\rangle$ to be unbiased. Notice that $E\langle w,Y\rangle = \langle w, \mu\rangle= \langle P_M w, \mu\rangle$ so the unbiased constrant becomes
+The second fact is to simply unravel what it means for a linear estimate, $\langle w,Y\rangle$ of $\langle v,\mu\rangle$ to be unbiased. Notice that $E\langle w,Y\rangle = \langle w, \mu\rangle= \langle P_M w, \mu\rangle$ so the unbiased constraint becomes
 \begin{equation}
 \langle P_Mw,\, \mu\rangle =  \langle P_M v,\, \mu\rangle\text{ for all $\mu\in M$}.
 \end{equation} 
-Now this implies that $P_Mw = P_Mv$ because the above formulat implies $\langle  P_Mw - P_Mv, \mu \rangle = 0$ then plug in $\mu = P_Mw - P_Mv\in M$. To summarize
+Now this implies that $P_Mw = P_Mv$ because the above formula implies $\langle  P_Mw - P_Mv, \mu \rangle = 0$ then plug in $\mu = P_Mw - P_Mv\in M$. To summarize
 \begin{quote}
 \em
 A necessary and sufficient condition that $\langle w, Y\rangle$ be a linear unbiased estimate of $\langle v, \mu\rangle$ is that $P_M w = P_M v$.
 \end{quote}
-By (\ref{GMform}) we know that the Gauss-Markov estimate is a linaer unbisaed estimate.
-Now it is easy to show the Gauss-Markov estimator has minimum variance among linaer unbisaed estimates
+By (\ref{GMform}) we know that the Gauss-Markov estimate is a linear unbiased estimate.
+Now it is easy to show the Gauss-Markov estimator has minimum variance among linear unbiased estimates
 \begin{align*}
 \text{var}(\langle w, Y\rangle) &= \text{var}(\langle w, Z\rangle) \\
  &= \sigma^2\|w \|^2, \quad\text{by \ref{cor2}} \\
@@ -243,15 +243,15 @@ Now it is easy to show the Gauss-Markov estimator has minimum variance among lin
 
 
 \subsection{Regression}
-Notice that the Gauss-markov theorem has implications for ANOVA, regression and most other linear statistical models. In this seciton we explore the Gauss-Markov theorem in the context of regression. The standard regression setup is 
+Notice that the Gauss-Markov theorem has implications for ANOVA, regression and most other linear statistical models. In this section we explore the Gauss-Markov theorem in the context of regression. The standard regression setup is 
 \[
 Y = X \beta + Z
 \]
-where $X$ is the design maktrix with $p$ columns  and $\beta$ is a $p$ dimensional coefficient vector of unkonwns and $Z\sim \mathcal N(0,\sigma^2 I)$. This is indeed equivalent to our basic linear model
+where $X$ is the design matrix with $p$ columns  and $\beta$ is a $p$ dimensional coefficient vector of unknowns and $Z\sim \mathcal N(0,\sigma^2 I)$. This is indeed equivalent to our basic linear model
 \[Y = \mu + Z \]
 where now $\mu$ is assumed to be in the linear space $M:= \{ \beta_1 x_1+\cdots \beta_p x_p:\beta_k\in \Bbb R\}$ where $x_k$ is the $k^\text{th}$ column of $X$. 
 
-To reconsile the OLS estimate  $\hat\beta = (X^tX)^{-1}X^t Y$ and the Gauss-markov estimate $\hat\mu = P_M Y$ simply notice that the OLS estimate of $\mu$ is simply $X\hat \beta = X(X^tX)^{-1}X^t Y$ which is the same as $P_M Y$. In paricular, $X(X^tX)^{-1}X^t$ is the coordinate-matrix form is $P_M$. This is easy to see when one adds the additional assumption that the columns of $X$ are orthonormal. In this case we know $X^tX = I$ and from Claim \ref{proj1} we know how to do the projection:
+To reconcile the OLS estimate  $\hat\beta = (X^tX)^{-1}X^t Y$ and the Gauss-Markov estimate $\hat\mu = P_M Y$ simply notice that the OLS estimate of $\mu$ is simply $X\hat \beta = X(X^tX)^{-1}X^t Y$ which is the same as $P_M Y$. In particular, $X(X^tX)^{-1}X^t$ is the coordinate-matrix form is $P_M$. This is easy to see when one adds the additional assumption that the columns of $X$ are orthonormal. In this case we know $X^tX = I$ and from Claim \ref{proj1} we know how to do the projection:
 \begin{align*}
 P_M Y &= \sum_{k=1}^p \langle Y, x_k\rangle x_k \\
 &= XX^tY,\quad\text{since $X^tY$ gives $\langle Y, x_k\rangle$}\\
@@ -259,24 +259,71 @@ P_M Y &= \sum_{k=1}^p \langle Y, x_k\rangle x_k \\
 &= X\hat \beta.  
 \end{align*}
 
-Now a few nice facts from regression automatically follow from the basic facts of projection. In partucular we know that $P_M$ is independent of $Y-P_MY$ from Corollary \ref{cor2}. This translates to the fact that 
+Now a few nice facts from regression automatically follow from the basic facts of projection. In particular we know that $P_M$ is independent of $Y-P_MY$ from Corollary \ref{cor2}. This translates to the fact that 
 \begin{quote}
-\em The estimated residuals $Y - X\hat \beta$ and the esimated mean $X\hat \beta$ are independent (and orthogonal as vectors).
+\em The estimated residuals $Y - X\hat \beta$ and the estimated mean $X\hat \beta$ are independent (and orthogonal as vectors).
 \end{quote}
-We also know that when $\mu$ is the zero vector (i.e. there is no signal) then $\|\hat \mu \|^2 = \|X\hat\beta \|^2 = \|P_M Y \|^2\sim  \sigma^2 \chi^2_p$. In a similar manner it is also clear that $\|Y - \hat \mu \|^2 \sigma^2 \chi^2_{n-p}$. This gives the classic $F$ test for $H_0:\mu=0$
+We also know that when $\mu$ is the zero vector (i.e. there is no signal) then $\|\hat \mu \|^2 = \|X\hat\beta \|^2 = \|P_M Y \|^2\sim  \sigma^2 \chi^2_p$. In a similar manner it is also clear that $\|Y - \hat \mu \|^2\sim \sigma^2 \chi^2_{n-p}$. This gives the classic $F$ test for $H_0:\mu=0$
 \begin{quote}
 \em
-Under the null hypothesis that $\mu = 0$ the random variable $F:= {\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ has the same distrubtion as ${Z_1}/{Z_2}$ where $Z_1\sim \chi^2_p$ and $Z_2\sim \chi^2_{n-p}$ are indepednent random variables.
+Under the null hypothesis that $\mu = 0$ the random variable $F:= {\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ has the same distribution as ${Z_1}/{Z_2}$ where $Z_1\sim \chi^2_p$ and $Z_2\sim \chi^2_{n-p}$ are independent random variables.
 \end{quote}
-Note that the independence again comes from the fact that projections of spherical Gaussians are independent of their residuals. This way of viewing the $F$ test is very natural. ${\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ measures the size of $\| \hat mu\|^2$ normalized by and estimate of $\sigma^2$ so $F$ is unit free. One can also understand $\| \hat mu\|^2$ as quantifying the explained varability in $Y$ and $\|Y - \hat \mu \|^2$ as the unexplained variability in $Y$.
+Note that the independence again comes from the fact that projections of spherical Gaussians are independent of their residuals. This way of viewing the $F$ test is very natural. ${\|\hat \mu \|^2}/{\|Y - \hat \mu \|^2}$ measures the size of $\| \hat \mu\|^2$ normalized by and estimate of $\sigma^2$ so $F$ is unit free. One can also understand $\| \hat \mu\|^2$ as quantifying the explained variability in $Y$ and $\|Y - \hat \mu \|^2$ as the unexplained variability in $Y$.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Likelihood ratio statistic}
 
+The basic goal of this section is to use our understanding of Gaussian projections to understand why $2\times(\text{log ratio statistic})= 2\Delta \ell(\hat \mu)$ is distributed $\chi^2_{\Delta \text{dim}}$ under the null hypothesis and the assumption the null and alternative models are nested and locally linear. Notice I'm using the notation $\Delta \text{dim}$ to denote the different in dimensions going from the null model to the full model.
 
+To start lets examine the class linear model
+\[Y = \mu + Z,\quad Z\sim\mathcal N(0,\sigma^2I). \]
+The hypothesis test we are interested in is:
+\begin{align*}
+&H_0: \mu\in M_0\\
+&H_1: \mu \in M_1
+\end{align*}
+where $M_0\subset M_1 \subset V$ are all linear vector spaces. Suppose $M_0$, $M_1$ and $V$ have dimensions $d_0, d_1$ and $d$ respectively. We are free to choose our orthonormal basis of $V$ as 
+\[\underbrace{\underbrace{\phi_1,\ldots, \phi_{d_0}}_{\text{these span $M_0$}},\,\, \psi_{1},\ldots, \psi_{d_1 - d_0}}_{\text{these span $M_1$}},\,\, \xi_1,\ldots \xi_{d_1 - d}.\]
+One can use the random coefficients under this basis to generate a log-likelihood for $\mu$ given the data as follows 
+\begin{align*}
+\ell(Y|\mu) =-\frac{1}{2\sigma^2} \|Y - \mu \|^2 - \frac{n}{2}\log(2\pi\sigma^{2})
+\end{align*}
+Now it's clear that the MLE estimates $\hat\mu_{M_k}=P_{M_k}Y$ since projections are characterized by the minimizer of the square norm. Therefore
+\begin{align*}
+2\Delta \ell(Y|\hat\mu) &= 2\ell(Y|P_{M_1}Y) - 2\ell(Y|P_{M_0}Y) \\
+ &= -\frac{1}{\sigma^2} \|Y - P_{M_1}Y \|^2 + \frac{1}{\sigma^2} \|Y - P_{M_0}Y \|^2 \\
+ &= -\frac{1}{\sigma^2} \left[\sum_{k=1}^{d_1-d}{\langle Y,\xi_k \rangle^2}\right] + \frac{1}{\sigma^2}  \left[ \sum_{k=1}^{d_1-d}{\langle Y,\xi_k \rangle^2}+  \sum_{k=1}^{d_1-d_0}{\langle Y,\psi_k \rangle^2}\right] \\
+ &= \frac{1}{\sigma^2}  \sum_{k=1}^{d_1-d_0}{\langle Y,\psi_k \rangle^2} \sim \chi^2_{d_1 - d_0}, \qquad \text{by Corollary \ref{cor2}}
+\end{align*}
+
+The interesting thing is that the distribution $\chi^2_{d_1 - d_1}$ persists as an approximation for $2\Delta \ell(\hat\mu|Y)$  under much greater generality. The conditions for this approximation  are, loosely, that the the statistical model has the local asymptotic normality property (LAN for short), the signal-to-noise ratio in the observations goes to infinity, and the two models $M_0$ and $M_1$ are locally linear with local dimension $d_0$ and $d_1$ respectively. If one doesn't have the local linear property of $M_0$, say, then the asymptotic distribution can be a mixture of chi-square random variables.
+To see why this is true we start with a small extension of the classic linear model
+\[ Y= \mu + {\sigma} Z \]
+where $\mu\in M_0\subset M_1$ are now only locally linear  with local dimension $d_0$ and $d_1$ respectively (let suppose the embedded space $V$ is still a linear vector space). We will analyze  $2\Delta \ell(Y|\hat\mu)$  in the case that $\sigma\rightarrow 0$  to model the situation where the signal-to-noise of the observations goes to infinity.  A good example to keep in mind is  the case where  $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0$ is the two dimensional sphere embedded in $M_1$. 
+
+To analyze the asymptotic distribution of $2\Delta \ell(Y|\hat\mu)$ in this case, suppose the true $\mu$ is in  $ M_0$.
+Notice that we are still free to set down a orthonormal basis of $V$
+\[\phi_1,\ldots, \phi_{d_0},\,\, \psi_{1},\ldots, \psi_{d_1 - d_0},\,\, \xi_1,\ldots \xi_{d_1 - d}\]
+but we do so in such a way that ${\phi_k}$ spans the local linear approximation of $M_0$ around the true $\mu$, and similarly that ${\phi_k, \psi_j}$ spans the local linear approximation of $M_1$ around the true $\mu$.
+Now as $\sigma\rightarrow 0$, the $Y$ gets closer to $\mu$ in a neighborhood that the local linear approximation becomes accurate. In this case, the estimates $\hat\mu_{\tiny M_k}$ are well approximated by the projections $P_{L_\mu M_0} Y$ and $P_{L_\mu M_1} Y$ onto the local linear approximations $L_\mu M_0$ and $L_\mu M_1$. Therefore
+\begin{align*}
+2\Delta \ell(Y|\hat\mu) 
+&= 2\ell(Y|\hat\mu_{M_1}) - 2\ell(Y|\hat\mu_{M_0}) \\
+&\approx 2\ell(Y|P_{L_\mu M_1}Y) - 2\ell(Y|P_{L_\mu M_0}Y) \\
+ &= \frac{1}{\sigma^2}  \sum_{k=1}^{d_1-d_0}{\langle Y,\psi_k \rangle^2} \sim \chi^2_{d_1 - d_0}.
+\end{align*}
+
+
+It now becomes clear what happens when the local linear approximation doesn't hold. For example suppose $V=\Bbb R^5$, $M_1=\Bbb R^3$ and $M_0=\{ \|v\|_p=1: v\in V\}$ where $p<1$. In this case $M_0$ has kinks at the each axis. Suppose the true $\mu$ is at the tip of one of those kinks. Then as $\sigma^2\rightarrow 0$, the $Y$ gets closer to $\mu$ and the resulting estimate $\hat\mu_{M_0}$ starts to behave like the projection of $Y$ onto a half line. This makes the term $\frac{1}{\sigma^2} \|Y - P_{M_0}Y \|^2$ in $2\Delta \ell(Y|\hat\mu) $ behave like a mixture of chi-squares depending on if the projection of $Y$ goes to the point of the half line or to the interior of the half line. 
+
+Finally, what happens when one doesn't have the nice classical linear model $Y = \mu + \sigma Z$? In this case we observe data, in the form of a vector of observations $Y$, and we have access only to a log-likelihood surface $\ell(Y|\mu)$. The local asymptotic normality condition essentially says that the MLE $\hat\mu$ (computed under model $M_1$) has the distribution $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$ where $F$ is something like the expected Hessian $\ell$ with one data point. The idea is that, in this case, the likelihood surface of the whole data set $\ell(Y|\mu)$ is well approximated by the likelihood surface of $\hat\mu$ under the model $\hat\mu \sim \mathcal N(\mu, F^{-1}/n)$. This suggested that we can make a new ``data vector'' $Y_{new} = F^{1/2}\hat\mu$ where $Y_{new}= \theta + Z$ and $Z\sim \mathcal N(0, n^{-1}I)$? This is the exact situation we were in earlier, with the signal to noise going to infinity, and the chi-square results still hold.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gaussian $E(X_0|X_1,\ldots, X_n)$ as projection}
 
 
-Most of what we have done with our absract vector space results could have been don't just as easy (albite a bit more messy) with coordinates. This hides the true power and generality of the abstract projection results. In this section we analyze projection of random variables which have no natural coordinate vector representation. In paricular we show that Gaussian conditional expectation is simply linear projection onto the linear space of the observations. 
+Most of what we have done with our abstract vector space results could have been don't just as easy (albeit a bit more messy) with coordinates. This hides the true power and generality of the abstract projection results. In this section we analyze projection of random variables which have no natural coordinate vector representation. In particular we show that Gaussian conditional expectation is simply linear projection onto the linear space of the observations. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
