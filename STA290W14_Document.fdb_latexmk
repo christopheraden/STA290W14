@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1394946561 "STA290W14_Document.tex" "STA290W14_Document.pdf" "STA290W14_Document" 1394946562
+["pdflatex"] 1394991332 "STA290W14_Document.tex" "STA290W14_Document.pdf" "STA290W14_Document" 1394991334
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/epsf/epsf.sty" 1298075956 27123 4572e7b856182a1e6e9df1c7cc21de80 ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
@@ -57,10 +57,10 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/enumerate.sty" 1254151720 3328 485bddd4058e8ddb2a8849a8d397dcbc ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/verbatim.sty" 1312409015 7125 6b8323deb5c5c3a19b248762654143eb ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "STA290W14_Document.aux" 1394946562 2351 df963d37971201df088f4f01d0ee69ab ""
-  "STA290W14_Document.out" 1394946562 676 d334dd7c95b3206ba6add929958a39d5 ""
-  "STA290W14_Document.tex" 1394946561 31431 aa204c0992825ddb3792df09136fedb8 ""
-  "STA290W14_Document.toc" 1394946562 844 912d015cf94669f64acd5693055eb111 ""
+  "STA290W14_Document.aux" 1394991333 2645 715c9197c814a0f617c5980ad85c397a ""
+  "STA290W14_Document.out" 1394991333 676 d334dd7c95b3206ba6add929958a39d5 ""
+  "STA290W14_Document.tex" 1394991331 35988 c2c857cc1add813970257484a297bf14 ""
+  "STA290W14_Document.toc" 1394991333 844 b59060001c54e662698f1aad5ef6d845 ""
   (generated)
   "STA290W14_Document.out"
   "STA290W14_Document.aux"

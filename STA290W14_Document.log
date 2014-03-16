@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 MAR 2014 22:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  16 MAR 2014 10:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -479,42 +479,53 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 323.
 
 [10]
+Overfull \hbox (18.61351pt too wide) in paragraph at lines 332--334
+\OML/cmm/m/it/10.95 a[] \OMS/cmsy/m/n/10.95 2 \U/msb/m/n/10.95 R\OMS/cmsy/m/n/1
+0.95 g$ \OT1/cmr/m/n/10.95 then $\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/
+cmm/m/it/10.95 X[]\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 X[]; [] ; X[]\OT1/cm
+r/m/n/10.95 ) \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 M$\OT1/cmr/m/n/10.95 . 
+The sec-ond fact is that $\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/cmm/m/i
+t/10.95 X[]\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 X[]; [] ; X[]\OT1/cmr/m/n/1
+0.95 )$
+ []
+
+[11] [12]
 Chapter 2.
-[11
+[13
 
 ]
 Chapter 3.
-[12
+[14
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
 
  []
 
-[13]
-Overfull \hbox (2.29033pt too wide) in paragraph at lines 396--397
+[15]
+Overfull \hbox (2.29033pt too wide) in paragraph at lines 469--470
 []\OT1/cmr/m/n/10.95 For our loss func-tion given in ([]3.1[]) we rec-og-nize t
 hat we have a ``weighted''
  []
 
 
-Overfull \hbox (14.35901pt too wide) in paragraph at lines 397--399
+Overfull \hbox (14.35901pt too wide) in paragraph at lines 470--472
 \OT1/cmr/m/n/10.95 Now, since our pos-te-rior dis-tri-bu-tion is a gamma with p
 a-ram-e-ters $[]$,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 421--423
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 
-Overfull \hbox (101.11038pt too wide) detected at line 444
+Overfull \hbox (101.11038pt too wide) detected at line 517
 \OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^Y; ^^N\OT1/cmr/m
 /n/10.95 ) = [] [] \OML/cmm/m/it/10.95 ^^Y\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
 95 ^^U\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 d^^U \OT1/cmr/m/n/10.95 = [] [] 
@@ -522,31 +533,31 @@ Overfull \hbox (101.11038pt too wide) detected at line 444
 5 ) \OML/cmm/m/it/10.95 dx \OT1/cmr/m/n/10.95 = \U/msb/m/n/10.95 E[] []
  []
 
-[15]
-Overfull \hbox (10.39702pt too wide) detected at line 455
+[17]
+Overfull \hbox (10.39702pt too wide) detected at line 528
 \U/msb/m/n/10.95 E[] [] \OT1/cmr/m/n/10.95 = [] = [] + [] = [] + []\OML/cmm/m/i
 t/10.95 ; []\U/msb/m/n/10.95 E[] [] \OT1/cmr/m/n/10.95 = []\OML/cmm/m/it/10.95 
 :
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 460.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 460.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 533.
+[18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 533.
  (./STA290W14_Document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 460.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 460.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 533.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 533.
 Package rerunfilecheck Info: File `STA290W14_Document.out' has not changed.
 (rerunfilecheck)             Checksum: D334DD7C95B3206BA6ADD929958A39D5;676.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 460.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 533.
  ) 
 Here is how much of TeX's memory you used:
- 6697 strings out of 493315
- 96697 string characters out of 6137904
- 186451 words of memory out of 5000000
- 9964 multiletter control sequences out of 15000+600000
+ 6705 strings out of 493315
+ 96780 string characters out of 6137904
+ 186670 words of memory out of 5000000
+ 9967 multiletter control sequences out of 15000+600000
  22759 words of font info for 85 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,15n,31p,1014b,422s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,16n,31p,1014b,422s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -566,10 +577,10 @@ e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2013/
 texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/201
 3/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on STA290W14_Document.pdf (16 pages, 241892 bytes).
+Output written on STA290W14_Document.pdf (18 pages, 249851 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
+ 271 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
