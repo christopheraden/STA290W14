@@ -1,0 +1,9 @@
+*.aux
+*.dvi
+*.idx
+*.ilg
+*.ind
+*.toc
+*.log
+*.bib
+*.synctex.gz
